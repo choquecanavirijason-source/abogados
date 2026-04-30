@@ -1,0 +1,54 @@
+{
+  "name": "Stratium Legal",
+  "short_name": "Stratium",
+  "description": "We connect investors, identify talented traders, and fund the most profitable ones. We boost your success with capital, support, and strategic opportunities.",
+  "icons": [
+    {
+      "src": "/icons/logo.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0A0E27",
+  "background_color": "#0A0E27",
+  "orientation": "portrait",
+  "display_override": ["window-controls-overlay", "fullscreen"],
+  "categories": ["finance", "investment", "trading", "broker", "forex", "stocks", "cryptocurrency"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "scope": "/",
+  "id": "/",
+  "iarc_rating_id": "1234567890",
+  "nfc_permission": false,
+  "share_target": {
+    "url_template": "https://alphaglobalmarket.io",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded"
+  },
+  "shortcuts": [
+    {
+      "name": "Home",
+      "url": "/",
+      "icons": [{ "src": "/icons/logo.ico", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Markets",
+      "url": "/markets",
+      "icons": [{ "src": "/icons/logo.ico", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "PAMM",
+      "url": "/pamm",
+      "icons": [{ "src": "/icons/logo.ico", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Company",
+      "url": "/company",
+      "icons": [{ "src": "/icons/logo.ico", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+"use client"
+import Header from "@/presentation/organisms/layout/Header";
+
+interface MainLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function MainLayout({ children }: MainLayoutProps) {
+  return (
+    <div>
+      <Header />
+      {children}
+    </div>
+  )
+}

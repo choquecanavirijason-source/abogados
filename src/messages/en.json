@@ -1,0 +1,362 @@
+{
+  "Header": {
+    "nav": {
+      "services": "Services",
+      "process": "Process",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "dof": "Official Gazette",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "themeToggleAriaLabel": "Toggle theme"
+    },
+    "buttons": {
+      "freeConsultation": "Free Consultation",
+      "whatsappConsult": "WhatsApp Consultation"
+    }
+  },
+  "Hero": {
+    "badge": "Legal alert - Mexico 2026",
+    "title": {
+      "line1": "The law won't wait.",
+      "line2": "Your company shouldn't either."
+    },
+    "description": {
+      "before": "We solve LGSM and CFF compliance remotely and quickly. Avoid fines up to",
+      "highlight": "$208k MXN",
+      "after": "."
+    },
+    "buttons": {
+      "protect": "Protect your company",
+      "services": "Services"
+    },
+    "floatingCards": {
+      "proposalReady": "Proposal ready",
+      "digitalRemote": "Digital - Remote"
+    },
+    "stats": {
+      "withoutBooks": "SMEs without updated books",
+      "maxFine": "Maximum annual fine",
+      "proposal": "Closed proposal",
+      "remote": "Remote"
+    }
+  },
+  "Services": {
+    "title": "What you don't know can cost you.",
+    "description": "The LGSM, Commercial Code, and CFF establish clear obligations for every legal entity. Not knowing them does not exempt compliance, and the consequences are real.",
+    "cards": [
+      {
+        "subtitle": "LGSM · ARTS. 128, 194, 219",
+        "title": "Mandatory corporate books",
+        "description": "Every commercial company must keep a share registry, minutes book for shareholders' meetings, and capital variation records. It is legally mandatory."
+      },
+      {
+        "subtitle": "COMMERCIAL CODE · ARTS. 33-41",
+        "title": "Minimum retention of 10 years",
+        "description": "Corporate books must be retained for at least 10 years from each entry. Mandatory even after the company has been liquidated."
+      },
+      {
+        "subtitle": "CFF · ARTS. 28, 83, 84",
+        "title": "Fines and tax penalties",
+        "description": "Failing to keep corporate accounting is a tax violation punishable with fines from $1,960 to $19,530 MXN per detected infraction. No exceptions."
+      }
+    ],
+    "quote": {
+      "text": "Legal entities are required to keep their accounting records, including books, registries, and other corporate documentation required by commercial laws.",
+      "footer": "Article 28, Federal Fiscal Code"
+    }
+  },
+  "Process": {
+    "imageAlt": "Legal attorney",
+    "badge": "REAL CONSEQUENCE · ART. 83 CFF",
+    "title": {
+      "line1": "$208,070",
+      "line2": "MXN per year"
+    },
+    "description": "Estimated fine per year of non-compliance plus updates and surcharges",
+    "source": "Source: Art. 83 CFF · Annex 5 RMF 2025 · Updated amounts",
+    "buttons": {
+      "protect": "Avoid this fine",
+      "services": "View services"
+    }
+  },
+  "Pricing": {
+    "title": {
+      "line1": "Your full corporate",
+      "line2": "lifecycle."
+    },
+    "description": "From company formation to yearly compliance. One legal team, everything your business needs.",
+    "carousel": {
+      "prevAria": "Previous plan",
+      "nextAria": "Next plan",
+      "goToPage": "Go to page {page}"
+    },
+    "plans": {
+      "fundacion": {
+        "step": "01 · FORMATION",
+        "title": "Company formation",
+        "description": "S.A. de C.V, S. de R.L. de C.V, and other entities. Formation deed, registration, and initial books.",
+        "price": "From $8,000 MXN",
+        "badge": "New"
+      },
+      "cumplimiento": {
+        "step": "02 · COMPLIANCE",
+        "title": "Corporate books",
+        "description": "Draft from scratch or update: shareholder records, meeting minutes, capital changes, and board records.",
+        "price": "From $5,000 MXN",
+        "badge": "Popular"
+      },
+      "gobernanza": {
+        "step": "03 · GOVERNANCE",
+        "title": "Shareholders meetings",
+        "description": "Ordinary and extraordinary meetings. Notice, minutes, and proper registration in corporate books.",
+        "price": "From $2,500 MXN",
+        "badge": "Recurring"
+      },
+      "urgente": {
+        "step": "04 · URGENT",
+        "title": "Corporate regularization",
+        "description": "Years without book updates. We rebuild your full corporate history and bring you back into compliance.",
+        "price": "From $12,000 MXN",
+        "badge": "Urgent"
+      },
+      "estructura": {
+        "step": "05 · STRUCTURE",
+        "title": "Corporate changes",
+        "description": "Partner entry/exit, capital increase, administrator changes, and bylaw amendments.",
+        "price": "From $3,500 MXN",
+        "badge": "Flexible"
+      },
+      "suscripcion": {
+        "step": "06 · SUBSCRIPTION",
+        "title": "Annual maintenance",
+        "description": "Annual meeting, book updates, and power-of-attorney review. Keep your company compliant every year.",
+        "price": "$6,000 MXN/year",
+        "badge": "Recommended"
+      }
+    }
+  },
+  "Steeps": {
+    "badge": "Process",
+    "title": {
+      "line1": "As simple",
+      "line2": "as that."
+    },
+    "description": "No bureaucracy. No travel. No surprises.",
+    "steps": {
+      "quote": {
+        "title": "Get a quote online",
+        "description": "Tell us what your company needs. Short form or direct call with one of our specialists."
+      },
+      "proposal": {
+        "title": "Proposal in 24h",
+        "description": "Scope, deliverables, and fixed price. No fine print, no hidden fees, no prior commitment."
+      },
+      "delivery": {
+        "title": "Documents delivered",
+        "description": "Everything in digital format with full legal validity. Ready for audit, bank, or notary from day one."
+      }
+    }
+  },
+  "NoisOption": {
+    "badge": "Legal framework",
+    "title": {
+      "line1": "It is not opinion.",
+      "line2": "It is the law."
+    },
+    "notes": [
+      "ART. 178 LGSM - The General Shareholders' Meeting is the supreme governing body; it may approve and ratify all acts and operations of the company.",
+      "ART. 194 LGSM - Shareholders' meeting minutes must be recorded in the proper book and signed by the president, secretary, and auditors.",
+      "ART. 128 LGSM - Corporations must keep a share registry with the name, nationality, and domicile of each shareholder.",
+      "ART. 38 C.COM - Obligation to preserve books and records for a minimum period of 10 years from each registered entry.",
+      "ART. 28 CFF - Legal entities are required to keep accounting records, including books and corporate registries.",
+      "ART. 83 CFF - Failure to keep required accounting records is a tax infringement subject to fines. No exceptions."
+    ],
+    "footer": {
+      "title": "Real legal support for every service.",
+      "description": "Each service has direct foundation in current Mexican legislation."
+    }
+  },
+  "Comparison": {
+    "badge": "Comparison",
+    "title": {
+      "line1": "Comply vs.",
+      "line2": "not comply."
+    },
+    "description": "The practical difference between legal certainty and permanent legal exposure.",
+    "with": {
+      "title": "With legal compliance",
+      "items": [
+        "Corporate books updated and in order",
+        "Legal certainty on shareholder structure",
+        "Zero risk of tax fines",
+        "Company ready for sale, merger, or investment",
+        "Administrators protected from joint liability",
+        "Documentation ready for any legal request"
+      ]
+    },
+    "without": {
+      "title": "Without legal compliance",
+      "items": [
+        "Fines up to $208,070+ MXN per year",
+        "No proof of who the shareholders are",
+        "Personal liability for the administrator",
+        "Blocked M&A or bank credit opportunities",
+        "Risk of tax crime (Art. 111 CFF)",
+        "Much more expensive notarial regularization"
+      ]
+    }
+  },
+  "PricingGrid": {
+    "badge": "Pricing",
+    "title": {
+      "line1": "Clear pricing.",
+      "line2": "No surprises."
+    },
+    "description": "All plans include digital delivery with full legal validity and personalized advisory.",
+    "button": "Get a quote",
+    "plans": {
+      "starter": {
+        "badge": "New companies",
+        "title": "Starter",
+        "description": "To begin with strong legal foundations from day one.",
+        "price": "$8,000",
+        "priceSuffix": "MXN",
+        "priceNote": "base price - varies by company type",
+        "features": [
+          "Company incorporation",
+          "Initial corporate books",
+          "Shareholder/partner registry",
+          "First shareholders meeting minutes",
+          "Complete digital delivery"
+        ]
+      },
+      "regularization": {
+        "badge": "Most popular",
+        "title": "Regularization",
+        "description": "To catch up with pending corporate compliance obligations.",
+        "price": "$12,000",
+        "priceSuffix": "MXN",
+        "priceNote": "base price - varies by years of delay",
+        "features": [
+          "Full corporate diagnostic",
+          "Corporate history reconstruction",
+          "All books updated",
+          "Missing meeting minutes",
+          "Review of active powers of attorney"
+        ]
+      },
+      "maintenance": {
+        "badge": "Annual subscription",
+        "title": "Maintenance",
+        "description": "Always compliant, no worries, year after year.",
+        "price": "$6,000",
+        "priceSuffix": "MXN/year",
+        "priceNote": "ideal for ongoing compliance continuity",
+        "features": [
+          "Annual ordinary meeting",
+          "Corporate books updates",
+          "Power-of-attorney review",
+          "Corporate legal support",
+          "Compliance reminders"
+        ]
+      }
+    }
+  },
+  "Faq": {
+    "badge": "Frequently asked questions",
+    "title": {
+      "line1": "What you need",
+      "line2": "to know."
+    },
+    "description": "Direct, practical answers to the most common questions.",
+    "items": [
+      {
+        "question": "What are corporate books?",
+        "answer": "They are legal records of your company history: shareholders, meetings, capital changes, and board resolutions. They are mandatory under Mexican corporate regulations."
+      },
+      {
+        "question": "Am I legally required to have them?",
+        "answer": "Yes. Every commercial entity must keep corporate books and maintain them updated to remain compliant."
+      },
+      {
+        "question": "What happens if they are not updated?",
+        "answer": "You may face tax fines, administrator liability risk, delays in banking or investment processes, and more expensive future regularization."
+      },
+      {
+        "question": "How does the 100% remote service work?",
+        "answer": "You share information digitally, we prepare all documents, guide you step by step, and deliver everything ready for legal use."
+      },
+      {
+        "question": "Do the documents have legal validity?",
+        "answer": "Yes. Documents are prepared under current Mexican legal framework and are suitable for audits, banks, investors, or notaries."
+      },
+      {
+        "question": "How fast can I receive my documents?",
+        "answer": "It depends on scope. In most cases we send a proposal within 24h and deliver documents in a few business days after confirmation."
+      },
+      {
+        "question": "Do you work with notaries?",
+        "answer": "Yes. When notarization or notarial procedures are required, we coordinate the process end-to-end."
+      }
+    ]
+  },
+  "Consultation": {
+    "badge": "Book your consultation",
+    "title": {
+      "line1": "Every day without compliance",
+      "line2": "is a day at risk."
+    },
+    "description": "Book your free consultation. No cost, no commitment. We review your company's legal status with you.",
+    "benefits": [
+      "Initial consultation completely free",
+      "Response in less than 24 hours",
+      "Clear fixed-price proposal",
+      "No spam - No obligations"
+    ],
+    "form": {
+      "title": "Request free consultation",
+      "fields": {
+        "name": "Full name",
+        "email": "Email address",
+        "phone": "Phone / WhatsApp",
+        "need": "What do you need to solve?",
+        "message": "Tell us your case (company, situation, urgency). Optional."
+      },
+      "options": {
+        "constitution": "Company incorporation",
+        "books": "Corporate books",
+        "regularization": "Regularization",
+        "advisory": "General legal advisory"
+      },
+      "button": "Book free consultation",
+      "helper": "We reply in less than 24h. No spam. No commitment."
+    }
+  },
+  "FooterShowcase": {
+    "team": {
+      "title": "Team",
+      "members": [
+        "Luis Pedro Santos - Founder / CEO",
+        "Elisa Cavio - Community manager and Sales closer",
+        "Eduardo Aguilar - Project manager",
+        "Yhuli Sandoval - Trainer and communications lead",
+        "Lilian Santos - Kids trainer",
+        "Julio Rios - Call center assistant"
+      ]
+    },
+    "consultants": {
+      "title": "External consultants",
+      "members": [
+        "Jose Medrano - Graphic designer",
+        "Dominic Prieto - Lawyer"
+      ]
+    },
+    "copyright": "© Copyright Q-English. All Rights Reserved",
+    "brand": {
+      "name": "Q-ENGLISH",
+      "tagline": "English Institute"
+    }
+  }
+}

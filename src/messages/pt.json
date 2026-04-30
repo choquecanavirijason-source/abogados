@@ -1,0 +1,210 @@
+{
+  "Header": {
+    "nav": {
+      "services": "Servicos",
+      "process": "Processo",
+      "pricing": "Precos",
+      "faq": "FAQ",
+      "theme": "Tema",
+      "light": "Claro",
+      "dark": "Escuro",
+      "themeToggleAriaLabel": "Alternar tema"
+    },
+    "buttons": {
+      "freeConsultation": "Consulta Gratuita",
+      "whatsappConsult": "Consulta pelo WhatsApp"
+    }
+  },
+  "Hero": {
+    "badge": "Alerta legal - México 2026",
+    "title": {
+      "line1": "A lei não espera.",
+      "line2": "Sua empresa também não."
+    },
+    "description": {
+      "before": "Resolvemos de forma remota e rápida o cumprimento da LGSM e CFF. Evite multas de até",
+      "highlight": "$208k MXN",
+      "after": "."
+    },
+    "buttons": {
+      "protect": "Proteja sua empresa",
+      "services": "Serviços"
+    },
+    "floatingCards": {
+      "proposalReady": "Proposta pronta",
+      "digitalRemote": "Digital - Remoto"
+    },
+    "stats": {
+      "withoutBooks": "PMEs sem livros atualizados",
+      "maxFine": "Multa máxima anual",
+      "proposal": "Proposta fechada",
+      "remote": "Remoto"
+    }
+  },
+  "Services": {
+    "title": "O que voce nao sabe pode custar caro.",
+    "description": "A LGSM, o Codigo Comercial e o CFF estabelecem obrigacoes claras para toda pessoa juridica. Nao conhecer essas regras nao isenta o cumprimento, e as consequencias sao reais.",
+    "cards": [
+      {
+        "subtitle": "LGSM · ARTS. 128, 194, 219",
+        "title": "Livros corporativos obrigatorios",
+        "description": "Toda sociedade mercantil deve manter registro de acoes, livro de atas de assembleias e registro de variacoes de capital. E obrigatorio por lei."
+      },
+      {
+        "subtitle": "CODIGO COMERCIAL · ARTS. 33-41",
+        "title": "Conservacao minima de 10 anos",
+        "description": "Os livros corporativos devem ser conservados por pelo menos 10 anos desde cada lancamento. Obrigatorio mesmo apos a liquidacao da sociedade."
+      },
+      {
+        "subtitle": "CFF · ARTS. 28, 83, 84",
+        "title": "Multas e sancoes fiscais",
+        "description": "Nao manter a contabilidade corporativa e infracao fiscal passivel de multas de $1,960 a $19,530 MXN por infracao detectada. Sem excecoes."
+      }
+    ],
+    "quote": {
+      "text": "As pessoas juridicas sao obrigadas a manter sua contabilidade, que inclui livros, registros e demais documentos corporativos exigidos pelas leis comerciais.",
+      "footer": "Artigo 28, Codigo Fiscal da Federacao"
+    }
+  },
+  "Process": {
+    "imageAlt": "Advogada legal",
+    "badge": "CONSEQUENCIA REAL · ART. 83 CFF",
+    "title": {
+      "line1": "$208,070",
+      "line2": "MXN por ano"
+    },
+    "description": "Multa estimada por ano de descumprimento mais atualizacoes e encargos",
+    "source": "Fonte: Art. 83 CFF · Anexo 5 RMF 2025 · Valores atualizados",
+    "buttons": {
+      "protect": "Evitar esta multa",
+      "services": "Ver servicos"
+    }
+  },
+  "Pricing": {
+    "title": {
+      "line1": "Todo o ciclo de vida",
+      "line2": "corporativo."
+    },
+    "description": "Da constituicao da empresa ao cumprimento anual. Um unico escritorio, tudo o que sua empresa precisa.",
+    "carousel": {
+      "prevAria": "Plano anterior",
+      "nextAria": "Proximo plano",
+      "goToPage": "Ir para a pagina {page}"
+    },
+    "plans": {
+      "fundacion": {
+        "step": "01 · FUNDACAO",
+        "title": "Constituicao de sociedades",
+        "description": "S.A. de C.V, S. de R.L. de C.V e outras figuras. Escritura constitutiva, registro e livros iniciais.",
+        "price": "A partir de $8,000 MXN",
+        "badge": "Novo"
+      },
+      "cumplimiento": {
+        "step": "02 · CONFORMIDADE",
+        "title": "Livros corporativos",
+        "description": "Elaboracao do zero ou atualizacao: acionistas, atas de assembleia, variacoes de capital e conselho.",
+        "price": "A partir de $5,000 MXN",
+        "badge": "Popular"
+      },
+      "gobernanza": {
+        "step": "03 · GOVERNANCA",
+        "title": "Assembleias de acionistas",
+        "description": "Ordinarias e extraordinarias. Convocacao, ata e registro em livros corporativos com plena validade.",
+        "price": "A partir de $2,500 MXN",
+        "badge": "Recorrente"
+      },
+      "urgente": {
+        "step": "04 · URGENTE",
+        "title": "Regularizacao corporativa",
+        "description": "Anos sem atualizar livros. Reconstruimos todo o historico corporativo e colocamos sua empresa em dia com a lei.",
+        "price": "A partir de $12,000 MXN",
+        "badge": "Urgente"
+      },
+      "estructura": {
+        "step": "05 · ESTRUTURA",
+        "title": "Alteracoes societarias",
+        "description": "Entrada/saida de socios, aumento de capital, mudanca de administrador e alteracao de estatutos.",
+        "price": "A partir de $3,500 MXN",
+        "badge": "Flexivel"
+      },
+      "suscripcion": {
+        "step": "06 · ASSINATURA",
+        "title": "Manutencao anual",
+        "description": "Assembleia ordinaria, atualizacao de livros e revisao de poderes. Sua empresa sempre em dia, todos os anos.",
+        "price": "$6,000 MXN/ano",
+        "badge": "Recomendado"
+      }
+    }
+  },
+  "Steeps": {
+    "badge": "Processo",
+    "title": {
+      "line1": "Assim",
+      "line2": "simples."
+    },
+    "description": "Sem burocracia. Sem deslocamentos. Sem surpresas.",
+    "steps": {
+      "quote": {
+        "title": "Cotacao online",
+        "description": "Conte o que sua empresa precisa. Formulario breve ou chamada direta com um dos nossos especialistas."
+      },
+      "proposal": {
+        "title": "Proposta em 24h",
+        "description": "Escopo, entregaveis e preco fechado. Sem letras miudas, sem custos ocultos, sem compromisso previo."
+      },
+      "delivery": {
+        "title": "Documentos entregues",
+        "description": "Tudo em formato digital com plena validade legal. Pronto para auditoria, banco ou cartorio desde o primeiro dia."
+      }
+    }
+  },
+  "NoisOption": {
+    "badge": "Marco legal",
+    "title": {
+      "line1": "Nao e opiniao.",
+      "line2": "E a lei."
+    },
+    "notes": [
+      "ART. 178 LGSM - A Assembleia Geral de Acionistas e o orgao supremo; pode acordar e ratificar todos os atos e operacoes da sociedade.",
+      "ART. 194 LGSM - As atas de assembleia devem ser registradas no livro correspondente e assinadas pelo presidente, secretario e comissarios.",
+      "ART. 128 LGSM - As sociedades anonimas devem manter um registro de acoes com nome, nacionalidade e domicilio de cada acionista.",
+      "ART. 38 C.COM - Obrigacao de conservar livros e documentos por um prazo minimo de 10 anos desde cada lancamento registrado.",
+      "ART. 28 CFF - As pessoas juridicas sao obrigadas a manter contabilidade, que inclui livros e registros corporativos.",
+      "ART. 83 CFF - Nao manter a contabilidade exigida e infracao fiscal sancionavel com multa. Sem excecao."
+    ],
+    "footer": {
+      "title": "Base legal real para cada servico.",
+      "description": "Cada servico tem fundamento direto na legislacao mexicana vigente."
+    }
+  },
+  "Comparison": {
+    "badge": "Comparativo",
+    "title": {
+      "line1": "Cumprir vs.",
+      "line2": "nao cumprir."
+    },
+    "description": "A diferenca concreta entre seguranca juridica e exposicao legal permanente.",
+    "with": {
+      "title": "Com conformidade legal",
+      "items": [
+        "Livros corporativos atualizados e em ordem",
+        "Seguranca juridica sobre a composicao societaria",
+        "Risco zero de multas fiscais",
+        "Empresa pronta para venda, fusao ou investimento",
+        "Administradores sem responsabilidade solidaria",
+        "Documentacao pronta para qualquer exigencia"
+      ]
+    },
+    "without": {
+      "title": "Sem conformidade legal",
+      "items": [
+        "Multas de ate $208,070+ MXN por ano",
+        "Impossibilidade de comprovar quem sao os socios",
+        "Responsabilidade pessoal do administrador",
+        "Bloqueio em M&A ou credito bancario",
+        "Risco de crime fiscal (Art. 111 CFF)",
+        "Regularizacao em cartorio muito mais cara"
+      ]
+    }
+  }
+}

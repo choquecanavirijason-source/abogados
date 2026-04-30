@@ -1,0 +1,362 @@
+{
+  "Header": {
+    "nav": {
+      "services": "服务",
+      "process": "流程",
+      "pricing": "价格",
+      "faq": "常见问题",
+      "dof": "官方公报",
+      "theme": "主题",
+      "light": "浅色",
+      "dark": "深色",
+      "themeToggleAriaLabel": "切换主题"
+    },
+    "buttons": {
+      "freeConsultation": "免费咨询",
+      "whatsappConsult": "WhatsApp 咨询"
+    }
+  },
+  "Hero": {
+    "badge": "法律提醒 - 墨西哥 2026",
+    "title": {
+      "line1": "法律不会等待。",
+      "line2": "你的公司也不该等待。"
+    },
+    "description": {
+      "before": "我们可远程快速解决 LGSM 与 CFF 合规问题。避免高达",
+      "highlight": "$208k MXN",
+      "after": "的罚款。"
+    },
+    "buttons": {
+      "protect": "保护你的公司",
+      "services": "服务"
+    },
+    "floatingCards": {
+      "proposalReady": "方案已就绪",
+      "digitalRemote": "数字化 - 远程"
+    },
+    "stats": {
+      "withoutBooks": "企业账册未更新",
+      "maxFine": "年度最高罚款",
+      "proposal": "方案已确认",
+      "remote": "远程"
+    }
+  },
+  "Services": {
+    "title": "你不知道的事，可能让你付出代价。",
+    "description": "LGSM、商法典和 CFF 为所有法人实体设定了明确义务。不知情并不能免除责任，后果非常现实。",
+    "cards": [
+      {
+        "subtitle": "LGSM · 第128、194、219条",
+        "title": "公司法定账册义务",
+        "description": "所有商事公司都必须保存股东名册、股东会会议记录簿以及资本变动记录。这是法律强制要求。"
+      },
+      {
+        "subtitle": "商法典 · 第33-41条",
+        "title": "至少保存 10 年",
+        "description": "公司账册自每条记录起至少保存 10 年。即使公司完成清算，该义务仍然有效。"
+      },
+      {
+        "subtitle": "CFF · 第28、83、84条",
+        "title": "罚款与税务处罚",
+        "description": "未保存公司会计与法定记录属于可处罚的税务违法行为。每项违规可被处以 $1,960 至 $19,530 MXN 罚款，无例外。"
+      }
+    ],
+    "quote": {
+      "text": "法人实体必须保存其会计资料，其中包括商法要求的账册、登记及其他公司文件。",
+      "footer": "联邦税法第28条"
+    }
+  },
+  "Process": {
+    "imageAlt": "法律顾问",
+    "badge": "真实后果 · CFF 第83条",
+    "title": {
+      "line1": "$208,070",
+      "line2": "MXN / 年"
+    },
+    "description": "每年不合规的预估罚款，另加更新与附加费用",
+    "source": "来源：CFF 第83条 · RMF 2025 附件5 · 最新金额",
+    "buttons": {
+      "protect": "避免这笔罚款",
+      "services": "查看服务"
+    }
+  },
+  "Pricing": {
+    "title": {
+      "line1": "企业全生命周期",
+      "line2": "合规服务。"
+    },
+    "description": "从公司设立到年度合规维护。一个法律团队，满足企业所需的一切服务。",
+    "carousel": {
+      "prevAria": "上一方案",
+      "nextAria": "下一方案",
+      "goToPage": "前往第 {page} 页"
+    },
+    "plans": {
+      "fundacion": {
+        "step": "01 · 设立",
+        "title": "公司设立服务",
+        "description": "支持 S.A. de C.V、S. de R.L. de C.V 等实体。提供设立文件、登记及初始账册。",
+        "price": "起价 $8,000 MXN",
+        "badge": "新"
+      },
+      "cumplimiento": {
+        "step": "02 · 合规",
+        "title": "公司账册管理",
+        "description": "从零起草或更新：股东名册、会议记录、资本变更及董事会记录。",
+        "price": "起价 $5,000 MXN",
+        "badge": "热门"
+      },
+      "gobernanza": {
+        "step": "03 · 治理",
+        "title": "股东大会服务",
+        "description": "常规与特别会议。包含通知、会议纪要及公司账册合法登记。",
+        "price": "起价 $2,500 MXN",
+        "badge": "常规"
+      },
+      "urgente": {
+        "step": "04 · 紧急",
+        "title": "公司合规补救",
+        "description": "多年未更新账册？我们重建完整公司历史，帮助你重新符合法规要求。",
+        "price": "起价 $12,000 MXN",
+        "badge": "紧急"
+      },
+      "estructura": {
+        "step": "05 · 结构",
+        "title": "公司结构变更",
+        "description": "股东进出、增资、管理员变更及公司章程修订。",
+        "price": "起价 $3,500 MXN",
+        "badge": "灵活"
+      },
+      "suscripcion": {
+        "step": "06 · 订阅",
+        "title": "年度维护服务",
+        "description": "年度股东会、账册更新及授权审查。让你的公司每年持续合规。",
+        "price": "$6,000 MXN/年",
+        "badge": "推荐"
+      }
+    }
+  },
+  "Steeps": {
+    "badge": "流程",
+    "title": {
+      "line1": "就是",
+      "line2": "这么简单。"
+    },
+    "description": "没有繁琐流程。无需奔波。没有意外。",
+    "steps": {
+      "quote": {
+        "title": "在线报价",
+        "description": "告诉我们你的公司需要什么。可填写简短表单，或直接与我们的专家通话。"
+      },
+      "proposal": {
+        "title": "24小时内方案",
+        "description": "服务范围、交付内容与固定价格。无隐藏条款、无额外费用、无前置承诺。"
+      },
+      "delivery": {
+        "title": "文件交付",
+        "description": "全部数字化文件，具备完整法律效力。从第一天起即可用于审计、银行或公证。"
+      }
+    }
+  },
+  "NoisOption": {
+    "badge": "法律框架",
+    "title": {
+      "line1": "这不是观点。",
+      "line2": "这是法律。"
+    },
+    "notes": [
+      "LGSM 第178条 - 股东大会是公司的最高机关；可决定并追认公司的一切行为与运营事项。",
+      "LGSM 第194条 - 股东大会会议纪要必须记入对应账册，并由主席、秘书及监察人签字。",
+      "LGSM 第128条 - 股份公司必须建立股东名册，记录每位股东的姓名、国籍与住所。",
+      "商法典第38条 - 自每笔登记之日起，账册与文件至少应保存10年。",
+      "CFF 第28条 - 法人实体必须保存会计资料，其中包括账册和公司登记记录。",
+      "CFF 第83条 - 未按要求保存会计资料属于可处罚的税务违法行为，并将被处以罚款。无例外。"
+    ],
+    "footer": {
+      "title": "每项服务都有真实法律依据。",
+      "description": "每项服务都直接依据现行墨西哥法律。"
+    }
+  },
+  "Comparison": {
+    "badge": "对比",
+    "title": {
+      "line1": "合规 vs.",
+      "line2": "不合规。"
+    },
+    "description": "法律确定性与长期法律风险之间的实际差异。",
+    "with": {
+      "title": "合规状态",
+      "items": [
+        "公司账册持续更新且完整有序",
+        "股权结构具备清晰法律确定性",
+        "税务罚款风险降至零",
+        "企业可随时进入出售、并购或融资流程",
+        "管理员免于连带责任风险",
+        "面对任何审查都可快速提交文件"
+      ]
+    },
+    "without": {
+      "title": "不合规状态",
+      "items": [
+        "每年罚款可达 $208,070+ MXN",
+        "无法证明真实股东身份",
+        "管理员可能承担个人责任",
+        "并购或银行授信流程受阻",
+        "存在税务犯罪风险（CFF 第111条）",
+        "后续公证整改成本显著更高"
+      ]
+    }
+  },
+  "PricingGrid": {
+    "badge": "价格",
+    "title": {
+      "line1": "价格清晰。",
+      "line2": "没有意外。"
+    },
+    "description": "所有方案均包含具备完整法律效力的数字化交付及专属顾问支持。",
+    "button": "立即报价",
+    "plans": {
+      "starter": {
+        "badge": "新公司",
+        "title": "Starter",
+        "description": "从第一天开始建立稳固的法律基础。",
+        "price": "$8,000",
+        "priceSuffix": "MXN",
+        "priceNote": "基础价格 - 视公司类型而定",
+        "features": [
+          "公司设立文件",
+          "初始公司账册",
+          "股东/合伙人名册",
+          "首次股东会议纪要",
+          "完整数字化交付"
+        ]
+      },
+      "regularization": {
+        "badge": "最受欢迎",
+        "title": "合规补正",
+        "description": "用于补齐企业历史遗留的合规义务。",
+        "price": "$12,000",
+        "priceSuffix": "MXN",
+        "priceNote": "基础价格 - 视延误年限而定",
+        "features": [
+          "完整公司合规诊断",
+          "公司历史重建",
+          "全部账册更新",
+          "补齐缺失会议纪要",
+          "现行授权文件审查"
+        ]
+      },
+      "maintenance": {
+        "badge": "年度订阅",
+        "title": "维护",
+        "description": "每年持续合规，省心无忧。",
+        "price": "$6,000",
+        "priceSuffix": "MXN/年",
+        "priceNote": "适合长期合规连续管理",
+        "features": [
+          "年度常规股东会",
+          "公司账册更新",
+          "授权与代理人审查",
+          "企业法律支持",
+          "合规义务提醒"
+        ]
+      }
+    }
+  },
+  "Faq": {
+    "badge": "常见问题",
+    "title": {
+      "line1": "你需要了解的",
+      "line2": "重点。"
+    },
+    "description": "针对最常见疑问的直接解答。",
+    "items": [
+      {
+        "question": "什么是公司法定账册？",
+        "answer": "它们是记录公司法律历史的文件：股东、会议纪要、资本变更及董事会决议。根据墨西哥法规，这是强制要求。"
+      },
+      {
+        "question": "法律上必须要有这些账册吗？",
+        "answer": "是的。所有商事公司都必须建立并持续更新公司账册。"
+      },
+      {
+        "question": "如果账册没有及时更新会怎样？",
+        "answer": "可能产生税务罚款、管理员责任风险，并影响银行授信、融资或并购流程。后续补正成本也会更高。"
+      },
+      {
+        "question": "100% 远程服务如何进行？",
+        "answer": "你通过线上提交资料，我们完成文件起草与审查，并全程指导，最终交付可直接使用的法律文件。"
+      },
+      {
+        "question": "文件是否具有法律效力？",
+        "answer": "是的。所有文件均按照现行墨西哥法律框架制作，可用于审计、银行、投资人或公证流程。"
+      },
+      {
+        "question": "多久可以收到文件？",
+        "answer": "取决于项目范围。通常 24 小时内提供方案，确认资料后数个工作日内交付。"
+      },
+      {
+        "question": "你们会对接公证人吗？",
+        "answer": "会。若项目需要公证或相关手续，我们会协调整个流程。"
+      }
+    ]
+  },
+  "Consultation": {
+    "badge": "预约咨询",
+    "title": {
+      "line1": "每一天不合规，",
+      "line2": "都是风险日。"
+    },
+    "description": "立即预约免费咨询。无费用、无强制。我们将一起评估你的企业法律状态。",
+    "benefits": [
+      "首次咨询完全免费",
+      "24小时内回复",
+      "固定且清晰的报价方案",
+      "无骚扰 - 无绑定"
+    ],
+    "form": {
+      "title": "申请免费咨询",
+      "fields": {
+        "name": "姓名",
+        "email": "电子邮箱",
+        "phone": "电话 / WhatsApp",
+        "need": "你希望解决什么问题？",
+        "message": "请描述你的情况（公司、现状、紧急程度）。可选。"
+      },
+      "options": {
+        "constitution": "公司设立",
+        "books": "公司账册",
+        "regularization": "合规补正",
+        "advisory": "综合法律咨询"
+      },
+      "button": "预约免费咨询",
+      "helper": "我们将在24小时内回复。无骚扰，无承诺。"
+    }
+  },
+  "FooterShowcase": {
+    "team": {
+      "title": "团队",
+      "members": [
+        "Luis Pedro Santos - 创始人 / CEO",
+        "Elisa Cavio - 社群与销售经理",
+        "Eduardo Aguilar - 项目经理",
+        "Yhuli Sandoval - 培训与沟通负责人",
+        "Lilian Santos - 儿童培训师",
+        "Julio Rios - 呼叫中心助理"
+      ]
+    },
+    "consultants": {
+      "title": "外部顾问",
+      "members": [
+        "Jose Medrano - 平面设计师",
+        "Dominic Prieto - 律师"
+      ]
+    },
+    "copyright": "© Copyright Q-English. All Rights Reserved",
+    "brand": {
+      "name": "Q-ENGLISH",
+      "tagline": "English Institute"
+    }
+  }
+}

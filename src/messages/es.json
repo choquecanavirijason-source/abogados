@@ -1,0 +1,362 @@
+{
+  "Header": {
+    "nav": {
+      "services": "Servicios",
+      "process": "Proceso",
+      "pricing": "Precios",
+      "faq": "FAQ",
+      "dof": "Diario Oficial",
+      "theme": "Tema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "themeToggleAriaLabel": "Cambiar tema"
+    },
+    "buttons": {
+      "freeConsultation": "Consulta Gratuita",
+      "whatsappConsult": "Consultar WhatsApp"
+    }
+  },
+  "Hero": {
+    "badge": "Alerta legal - México 2026",
+    "title": {
+      "line1": "La ley no espera.",
+      "line2": "Tu empresa tampoco."
+    },
+    "description": {
+      "before": "Resolvemos de forma remota y rápida el cumplimiento de la LGSM y CFF. Evita multas de hasta",
+      "highlight": "$208k MXN",
+      "after": "."
+    },
+    "buttons": {
+      "protect": "Protege tu empresa",
+      "services": "Servicios"
+    },
+    "floatingCards": {
+      "proposalReady": "Propuesta lista",
+      "digitalRemote": "Digital - Remoto"
+    },
+    "stats": {
+      "withoutBooks": "PyMEs sin libros al día",
+      "maxFine": "Multa máxima anual",
+      "proposal": "Propuesta cerrada",
+      "remote": "Remoto"
+    }
+  },
+  "Services": {
+    "title": "Lo que no sabes, si te puede costar.",
+    "description": "La LGSM, el Codigo de Comercio y el CFF establecen obligaciones claras para toda persona moral. No conocerlas no te exime de cumplirlas y las consecuencias son reales.",
+    "cards": [
+      {
+        "subtitle": "LGSM · ARTS. 128, 194, 219",
+        "title": "Libros corporativos obligatorios",
+        "description": "Toda sociedad mercantil debe llevar registro de acciones, libro de actas de asambleas y registro de variaciones de capital. Es obligatorio por ley."
+      },
+      {
+        "subtitle": "CODIGO DE COMERCIO · ARTS. 33-41",
+        "title": "Conservacion minima de 10 anos",
+        "description": "Los libros corporativos deben conservarse por al menos 10 anos desde cada asiento. Obligatorio incluso despues de la liquidacion de la sociedad."
+      },
+      {
+        "subtitle": "CFF · ARTS. 28, 83, 84",
+        "title": "Multas y sanciones fiscales",
+        "description": "No llevar contabilidad corporativa es infraccion fiscal sancionable con multas de $1,960 a $19,530 MXN por infraccion detectada. Sin excepciones."
+      }
+    ],
+    "quote": {
+      "text": "Las personas morales estan obligadas a llevar su contabilidad, que comprendera los libros, registros y demas documentacion corporativa que exigen las leyes mercantiles.",
+      "footer": "Articulo 28, Codigo Fiscal de la Federacion"
+    }
+  },
+  "Process": {
+    "imageAlt": "Abogada legal",
+    "badge": "CONSECUENCIA REAL · ART. 83 CFF",
+    "title": {
+      "line1": "$208,070",
+      "line2": "MXN por ano"
+    },
+    "description": "Multa estimada por ano incumplido mas actualizaciones y recargos",
+    "source": "Fuente: Art. 83 CFF · Anexo 5 RMF 2025 · Cantidades actualizadas",
+    "buttons": {
+      "protect": "Evitar esta multa",
+      "services": "Ver servicios"
+    }
+  },
+  "Pricing": {
+    "title": {
+      "line1": "Todo el ciclo de vida",
+      "line2": "corporativo."
+    },
+    "description": "Desde constituir tu empresa hasta mantenerla en cumplimiento cada ano. Un solo despacho, todo lo que tu empresa necesita.",
+    "carousel": {
+      "prevAria": "Plan anterior",
+      "nextAria": "Plan siguiente",
+      "goToPage": "Ir a pagina {page}"
+    },
+    "plans": {
+      "fundacion": {
+        "step": "01 · FUNDACION",
+        "title": "Constitucion de sociedades",
+        "description": "S.A. de C.V, S. de R.L. de C.V y otras figuras. Acta constitutiva, inscripcion y libros iniciales.",
+        "price": "Desde $8,000 MXN",
+        "badge": "Nuevo"
+      },
+      "cumplimiento": {
+        "step": "02 · CUMPLIMIENTO",
+        "title": "Libros corporativos",
+        "description": "Elaboracion desde cero o actualizacion: accionistas, actas de asamblea, variaciones de capital y consejo.",
+        "price": "Desde $5,000 MXN",
+        "badge": "Popular"
+      },
+      "gobernanza": {
+        "step": "03 · GOBERNANZA",
+        "title": "Asambleas de accionistas",
+        "description": "Ordinarias y extraordinarias. Convocatoria, acta y registro en libros corporativos con plena validez.",
+        "price": "Desde $2,500 MXN",
+        "badge": "Recurrente"
+      },
+      "urgente": {
+        "step": "04 · URGENTE",
+        "title": "Regularizacion corporativa",
+        "description": "Anos sin actualizar libros. Reconstruimos tu historial corporativo completo y te ponemos al dia con la ley.",
+        "price": "Desde $12,000 MXN",
+        "badge": "Urgente"
+      },
+      "estructura": {
+        "step": "05 · ESTRUCTURA",
+        "title": "Cambios societarios",
+        "description": "Entrada/salida de socios, aumento de capital, cambio de administrador o modificacion de estatutos.",
+        "price": "Desde $3,500 MXN",
+        "badge": "Flexible"
+      },
+      "suscripcion": {
+        "step": "06 · SUSCRIPCION",
+        "title": "Mantenimiento anual",
+        "description": "Asamblea ordinaria, actualizacion de libros y revision de poderes. Tu empresa siempre al dia, cada ano.",
+        "price": "$6,000 MXN/ano",
+        "badge": "Recomendado"
+      }
+    }
+  },
+  "Steeps": {
+    "badge": "Proceso",
+    "title": {
+      "line1": "Asi de",
+      "line2": "simple."
+    },
+    "description": "Sin burocracia. Sin desplazamientos. Sin sorpresas.",
+    "steps": {
+      "quote": {
+        "title": "Cotiza en linea",
+        "description": "Cuentanos que necesita tu empresa. Formulario breve o llamada directa con uno de nuestros especialistas."
+      },
+      "proposal": {
+        "title": "Propuesta en 24h",
+        "description": "Alcance, entregables y precio cerrado. Sin letras chiquitas, sin costos ocultos, sin compromisos previos."
+      },
+      "delivery": {
+        "title": "Documentos entregados",
+        "description": "Todo en formato digital con plena validez legal. Listos para auditoria, banco o notario desde el primer dia."
+      }
+    }
+  },
+  "NoisOption": {
+    "badge": "Marco legal",
+    "title": {
+      "line1": "No es opinion",
+      "line2": "Es la ley."
+    },
+    "notes": [
+      "ART. 178 LGSM - La Asamblea General de Accionistas es el organo supremo; puede acordar y ratificar todos los actos y operaciones de la sociedad.",
+      "ART. 194 LGSM - Las actas de asamblea deben asentarse en el libro respectivo y firmarse por el presidente, secretario y comisarios.",
+      "ART. 128 LGSM - Las sociedades anonimas deben llevar un registro de acciones con nombre, nacionalidad y domicilio de cada accionista.",
+      "ART. 38 C.COM - Obligacion de conservar libros y documentos por un plazo minimo de 10 anos desde cada asiento registrado.",
+      "ART. 28 CFF - Las personas morales estan obligadas a llevar contabilidad, que incluye libros y registros corporativos.",
+      "ART. 83 CFF - No llevar la contabilidad requerida es infraccion fiscal sancionable con multa. Sin excepcion alguna."
+    ],
+    "footer": {
+      "title": "Sustento legal real para cada servicio.",
+      "description": "Cada servicio tiene fundamento directo en la legislacion mexicana vigente."
+    }
+  },
+  "Comparison": {
+    "badge": "Comparativa",
+    "title": {
+      "line1": "Cumplir vs.",
+      "line2": "no cumplir."
+    },
+    "description": "La diferencia concreta entre certeza juridica y exposicion legal permanente.",
+    "with": {
+      "title": "Con cumplimiento legal",
+      "items": [
+        "Libros corporativos actualizados y en orden",
+        "Certeza juridica sobre la composicion accionaria",
+        "Cero riesgo de multas fiscales",
+        "Empresa lista para venta, fusion o inversion",
+        "Administradores sin responsabilidad solidaria",
+        "Documentacion ante cualquier requerimiento"
+      ]
+    },
+    "without": {
+      "title": "Sin cumplimiento legal",
+      "items": [
+        "Multas de hasta $208,070+ MXN por ano",
+        "Imposibilidad de acreditar quienes son los socios",
+        "Responsabilidad personal del administrador",
+        "Bloqueo en M&A o credito bancario",
+        "Riesgo de delito fiscal (Art. 111 CFF)",
+        "Protocolizacion ante notario mucho mas costosa"
+      ]
+    }
+  },
+  "PricingGrid": {
+    "badge": "Precios",
+    "title": {
+      "line1": "Precios claros.",
+      "line2": "Sin sorpresas."
+    },
+    "description": "Todos los planes incluyen entrega digital con plena validez legal y asesoria personalizada.",
+    "button": "Cotizar ahora",
+    "plans": {
+      "starter": {
+        "badge": "Empresas nuevas",
+        "title": "Starter",
+        "description": "Para empezar con bases legales solidas desde el dia uno.",
+        "price": "$8,000",
+        "priceSuffix": "MXN",
+        "priceNote": "precio base - var segun tipo de sociedad",
+        "features": [
+          "Constitucion de sociedad",
+          "Libros corporativos iniciales",
+          "Registro de accionistas/socios",
+          "Primera acta de asamblea",
+          "Entrega digital completa"
+        ]
+      },
+      "regularization": {
+        "badge": "Mas popular",
+        "title": "Regularizacion",
+        "description": "Para ponerse al dia con las obligaciones corporativas pendientes.",
+        "price": "$12,000",
+        "priceSuffix": "MXN",
+        "priceNote": "precio base - var segun anos de atraso",
+        "features": [
+          "Diagnostico corporativo completo",
+          "Reconstruccion de historial",
+          "Todos los libros actualizados",
+          "Actas de asambleas faltantes",
+          "Revision de poderes vigentes"
+        ]
+      },
+      "maintenance": {
+        "badge": "Suscripcion anual",
+        "title": "Mantenimiento",
+        "description": "Siempre en cumplimiento, sin preocupaciones, cada ano.",
+        "price": "$6,000",
+        "priceSuffix": "MXN/ano",
+        "priceNote": "ideal para continuidad de cumplimiento",
+        "features": [
+          "Asamblea ordinaria anual",
+          "Actualizacion de libros",
+          "Revision de poderes y apoderados",
+          "Soporte legal corporativo",
+          "Recordatorios de obligaciones"
+        ]
+      }
+    }
+  },
+  "Faq": {
+    "badge": "Preguntas frecuentes",
+    "title": {
+      "line1": "Lo que necesitas",
+      "line2": "saber."
+    },
+    "description": "Respuestas directas y sin rodeos a las dudas mas comunes.",
+    "items": [
+      {
+        "question": "Que son los libros corporativos?",
+        "answer": "Son los documentos que registran la historia legal de tu empresa: socios, asambleas, cambios de capital y resoluciones del consejo. Son obligatorios por LGSM y Codigo de Comercio."
+      },
+      {
+        "question": "Estoy legalmente obligado a tenerlos?",
+        "answer": "Si. Toda sociedad mercantil debe contar con sus libros corporativos y mantenerlos actualizados para cumplir con la normativa vigente."
+      },
+      {
+        "question": "Que consecuencias tiene no tenerlos al dia?",
+        "answer": "Puede haber multas fiscales, riesgo para administradores, bloqueos en procesos bancarios o de inversion y mayor costo en regularizaciones posteriores."
+      },
+      {
+        "question": "Como funciona el servicio 100% remoto?",
+        "answer": "Nos compartes tu informacion por medios digitales, elaboramos la documentacion, te guiamos paso a paso y entregamos todo listo para uso legal."
+      },
+      {
+        "question": "Los documentos tienen validez legal?",
+        "answer": "Si. Se elaboran conforme al marco legal mexicano y con estructura apta para auditoria, banco, inversionistas o notario."
+      },
+      {
+        "question": "En cuanto tiempo recibo mis documentos?",
+        "answer": "Depende del alcance. En la mayoria de casos entregamos propuesta en 24h y documentos en pocos dias habiles tras confirmar informacion."
+      },
+      {
+        "question": "Trabajan con notarios?",
+        "answer": "Si. Cuando el caso requiere protocolizacion o tramites notariales, coordinamos el proceso para que no pierdas tiempo."
+      }
+    ]
+  },
+  "Consultation": {
+    "badge": "Agenda tu consulta",
+    "title": {
+      "line1": "Cada dia sin cumplir",
+      "line2": "es un dia de riesgo."
+    },
+    "description": "Agenda tu consulta gratuita. Sin costo, sin compromiso. Descubrimos el estado legal de tu empresa juntos.",
+    "benefits": [
+      "Consulta inicial completamente gratuita",
+      "Respuesta en menos de 24 horas",
+      "Propuesta con precio cerrado y claro",
+      "Sin spam - Sin compromisos"
+    ],
+    "form": {
+      "title": "Solicitar consulta gratuita",
+      "fields": {
+        "name": "Nombre completo",
+        "email": "Correo electronico",
+        "phone": "Telefono / WhatsApp",
+        "need": "Que necesitas resolver?",
+        "message": "Cuentanos tu caso (empresa, situacion, urgencia). Opcional."
+      },
+      "options": {
+        "constitution": "Constitucion de sociedad",
+        "books": "Libros corporativos",
+        "regularization": "Regularizacion",
+        "advisory": "Asesoria legal general"
+      },
+      "button": "Agendar consulta gratuita",
+      "helper": "Respondemos en menos de 24 h. Sin spam. Sin compromiso."
+    }
+  },
+  "FooterShowcase": {
+    "team": {
+      "title": "Equipo",
+      "members": [
+        "Luis Pedro Santos - Fundador / CEO",
+        "Elisa Cavio - Community manager y Cierre de ventas",
+        "Eduardo Aguilar - Gerente de proyectos",
+        "Yhuli Sandoval - Entrenadora y encargada de comunicacion",
+        "Lilian Santos - Entrenadora para Kids",
+        "Julio Rios - Asistente de callcenter"
+      ]
+    },
+    "consultants": {
+      "title": "Consultores externos",
+      "members": [
+        "Jose Medrano - Disenador grafico",
+        "Dominic Prieto - Abogado"
+      ]
+    },
+    "copyright": "© Copyright Q-English. All Rights Reserved",
+    "brand": {
+      "name": "Q-ENGLISH",
+      "tagline": "English Institute"
+    }
+  }
+}
