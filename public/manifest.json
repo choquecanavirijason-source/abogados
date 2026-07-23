@@ -1,7 +1,7 @@
 {
   "name": "Stratium Legal",
   "short_name": "Stratium",
-  "description": "We connect investors, identify talented traders, and fund the most profitable ones. We boost your success with capital, support, and strategic opportunities.",
+  "description": "Vinculamos clientes con el mejor talento legal, identificamos especialistas de alto rendimiento y respaldamos las estrategias más sólidas. Potenciamos el éxito jurídico con recursos técnicos, soporte integral y oportunidades de crecimiento institucional.",
   "icons": [
     {
       "src": "/icons/logo.ico",
@@ -25,7 +25,7 @@
   "iarc_rating_id": "1234567890",
   "nfc_permission": false,
   "share_target": {
-    "url_template": "https://alphaglobalmarket.io",
+    "url_template": "https://stratiumlegal.com",
     "method": "GET",
     "enctype": "application/x-www-form-urlencoded"
   },

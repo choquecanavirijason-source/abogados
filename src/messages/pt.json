@@ -1,10 +1,14 @@
 {
   "Header": {
     "nav": {
+      "home": "Inicio",
       "services": "Servicos",
       "process": "Processo",
       "pricing": "Precos",
       "faq": "FAQ",
+      "terms": "Termos e condicoes",
+      "company": "Empresa",
+      "privacy": "Aviso de privacidade integral",
       "theme": "Tema",
       "light": "Claro",
       "dark": "Escuro",
@@ -39,11 +43,20 @@
       "maxFine": "Multa máxima anual",
       "proposal": "Proposta fechada",
       "remote": "Remoto"
+    },
+    "dofTicker": {
+      "title": "Diário Oficial da Federação (DOF)",
+      "error": "Não foi possível carregar o resumo do DOF. Tente mais tarde.",
+      "empty": "Não há publicações disponíveis no momento."
     }
   },
   "Services": {
-    "title": "O que voce nao sabe pode custar caro.",
+    "title": {
+      "line1": "O que voce nao sabe",
+      "line2": "pode custar caro."
+    },
     "description": "A LGSM, o Codigo Comercial e o CFF estabelecem obrigacoes claras para toda pessoa juridica. Nao conhecer essas regras nao isenta o cumprimento, e as consequencias sao reais.",
+    "disclaimer": "Referencias: LGSM, Codigo Comercial e CFF.",
     "cards": [
       {
         "subtitle": "LGSM · ARTS. 128, 194, 219",
@@ -206,5 +219,34 @@
         "Regularizacao em cartorio muito mais cara"
       ]
     }
+  },
+  "Team": {
+    "badge": "Equipe",
+    "title": {
+      "line1": "Integrantes do",
+      "line2": "time juridico"
+    },
+    "description": "Conheca os socios que assessoram nossos clientes em temas societarios, contratuais, notariais e de expansao empresarial.",
+    "disclaimer": "Clique em um perfil para ver mais.",
+    "modal": {
+      "close": "Fechar"
+    },
+    "members": [
+      {
+        "name": "Lic. Diego Lazcano González",
+        "role": "Socio | Societario, contratos e cadeia de suprimentos",
+        "bio": "Especialista em direito societario e gestao juridica empresarial, com experiencia na administracao integral de sociedades empresariais e na estruturacao de operacoes comerciais. Focado na elaboracao, negociacao e revisao de contratos comerciais, de locacao, compra e venda e prestacao de servicos, bem como no desenho de estrategias legais para operacoes corporativas e de cadeia de suprimentos. Presta assessoria a empresas em temas societarios, contratuais e financeiros, com especial interesse em grupos empresariais, operacoes comerciais e companhias em expansao."
+      },
+      {
+        "name": "Lic. Esteban Santiago Viñas Caballero",
+        "role": "Socio | Direito societario, civil e pratica notarial",
+        "bio": "Especialista em direito societario, civil e pratica notarial, com experiencia na constituicao, reestruturacao e operacao de sociedades empresariais sob a LGSM. Participou na elaboracao e protocolizacao de atas de assembleia, aumentos e diminuicoes de capital, transmissoes acionarias, outorga de poderes e regularizacao corporativa de empresas nacionais e grupos patrimoniais. Alem disso, possui ampla experiencia em direito civil, incluindo a elaboracao e revisao de contratos, bem como em tramitacoes sucessorias e operacoes imobiliarias complexas. Sua pratica combina solida formacao juridica com experiencia no ambito registral, societario e notarial. Adicionalmente, e selecionado nacional de rugby, disciplina que fortaleceu sua lideranca, capacidade de trabalho em equipe e foco estrategico."
+      },
+      {
+        "name": "Lic. Diego Solano García",
+        "role": "Socio | Sociedades empresariais e franquias",
+        "bio": "Especialista em constituicao e estruturacao de sociedades empresariais sob a LGSM, com enfoque particular em modelos de franquia e expansao comercial. Assessora empresas nacionais e internacionais na formalizacao de sua presenca juridica no Mexico, desde o ato constitutivo ate os contratos de franquia e os livros corporativos. Especial interesse em startups, grupos empresariais e marcas em crescimento."
+      }
+    ]
   }
 }

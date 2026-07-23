@@ -2,15 +2,18 @@ import type { MetadataRoute } from "next"
 
 export const dynamic = "force-static"
 
+const SITE_URL = "https://stratiumlegal.com"
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/api/"],
       },
     ],
-    sitemap: "https://alphaglobalmarket.io/sitemap.xml",
-    host: "https://alphaglobalmarket.io",
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   }
 }

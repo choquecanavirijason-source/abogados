@@ -1,30 +1,33 @@
+import type { MouseEvent } from "react"
 import { ArrowRight } from "lucide-react"
 
 interface ButtonRedirectProps {
   text?: string
   href?: string
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void
 }
 
-export default function ButtonRedirect({ 
+export default function ButtonRedirect({
   text = 'Iniciar sesión',
   href,
+  onClick,
  }: ButtonRedirectProps) {
-  const whatsappFallback = `https://wa.me/?text=${encodeURIComponent("Hola, quiero informacion sobre sus servicios.")}`
-  const hrefLooksLikeWhatsapp = typeof href === "string" && /wa\.me|whatsapp\.com/i.test(href)
-  const finalHref = hrefLooksLikeWhatsapp ? href : whatsappFallback
+  const whatsappFallback = `https://wa.me/?text=${encodeURIComponent("Hola, quiero información sobre sus servicios.")}`
+  const finalHref = typeof href === "string" && href.length > 0 ? href : whatsappFallback
+  const isExternal = /^https?:\/\//i.test(finalHref)
 
   return (
-    <div className="font-euclid font-regular bg-linear-to-r from-[#0A0E27] to-[#4688D4] text-white transition-all duration-300 rounded-xl hover:-translate-y-0.5">
+    <div className="inline-flex rounded-full bg-linear-to-r from-[#0A0E27] to-[#4688D4] p-[1px] font-euclid text-white transition-transform duration-300 hover:-translate-y-0.5 active:translate-y-0">
       <a
         href={finalHref}
-        target="_blank"
-        rel="noreferrer"
-        className="group flex justify-between items-center gap-2 p-1.5 cursor-pointer"
+        onClick={onClick}
+        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className="group flex items-center justify-between gap-3 rounded-full bg-[#0A0E27]/85 px-2 py-1 text-xs font-semibold uppercase tracking-wide transition-colors hover:bg-[#0A0E27] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4688D4]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0E27]"
       >
-        <span className="font-regular">{text.toUpperCase()}</span>
+        <span className="min-w-0 truncate">{text.toUpperCase()}</span>
 
-        <div className="bg-white h-8 w-8 flex items-center justify-center text-black rounded-lg transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-0.5 group-hover:scale-105">
-          <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:rotate-90" />
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#0A0E27] transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:scale-105">
+          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-90" />
         </div>
       </a>
     </div>

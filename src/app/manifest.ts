@@ -4,13 +4,13 @@ export const dynamic = "force-static"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Alpha Global Market",
-    short_name: "AGM",
-    description: "Alpha Global Market landing site",
+    name: "Stratium Legal",
+    short_name: "Stratium",
+    description: "Cumplimiento legal corporativo remoto para empresas en México.",
     start_url: "/",
     display: "standalone",
-    background_color: "#050A14",
-    theme_color: "#050A14",
+    background_color: "#0A0E27",
+    theme_color: "#0A0E27",
     icons: [
       {
         src: "/icons/logo.ico",

@@ -1,22 +1,151 @@
-import Image from "next/image"
-import SectionLayout from "./SectionLayout"
-import BadgeGeneral from "@/presentation/atoms/common/badge/BadgeGeneral"
-import ButtonBorder from "../../common/buttons/ButtonBorder"
-import ButtonRedirect from "../../common/buttons/ButtonRedirect"
-import HeroStatItem from "./HeroStatItem"
-import TitleSection from "@/presentation/atoms/common/title/TitleSection"
-import SectionDescription from "@/presentation/atoms/common/text/SectionDescription"
-import { useTranslations } from "next-intl"
+'use client';
+
+import Image from "next/image";
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+import HeroBackgroundCrossfade from "./HeroBackgroundCrossfade";
+import SectionLayout from "./SectionLayout";
+import BadgeGeneral from "@/presentation/atoms/common/badge/BadgeGeneral";
+import ButtonBorder from "../../common/buttons/ButtonBorder";
+import ButtonRedirect from "../../common/buttons/ButtonRedirect";
+import HeroDofTicker from "./HeroDofTicker";
+import HeroStatItem from "./HeroStatItem";
+import TitleSection from "@/presentation/atoms/common/title/TitleSection";
+import SectionDescription from "@/presentation/atoms/common/text/SectionDescription";
+import { useTranslations } from "next-intl";
+import { EASE_REVEAL, PARALLAX_SCRUB, SCROLL_START, TOGGLE_ACTIONS } from "./scrollAnimation";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const heroStats = [
   { value: "70%", labelKey: "withoutBooks" },
   { value: "$208k", labelKey: "maxFine" },
   { value: "24h", labelKey: "proposal" },
   { value: "100%", labelKey: "remote" },
-]
+];
+
+const heroBackgroundSlides = [
+  { src: "/images/home/hero/mexi.png", alt: "México" },
+  { src: "/images/home/hero/mexico2.png", alt: "México" },
+  { src: "/images/home/hero/mexico.png", alt: "México" },
+  { src: "/images/home/hero/indi.png", alt: "India" },
+] as const;
 
 export default function HeroSection() {
-  const t = useTranslations("Hero")
+  const t = useTranslations("Hero");
+
+  const handleScrollToPricing = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const pricingSection = document.getElementById("services");
+    if (pricingSection) {
+      event.preventDefault();
+      pricingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", "#services");
+    }
+  };
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const sealRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      // Toda la animación de movimiento solo si el usuario NO pidió reducir movimiento.
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // 1. Parallax del fondo — bidireccional por scrub (sube al bajar, baja al subir)
+        gsap.to(".hero-background", {
+          yPercent: -22,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: PARALLAX_SCRUB,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // 2. Glow ambiental pulsante (vida en el fondo de la tarjeta)
+        gsap.to(".hero-glow", {
+          opacity: 0.9,
+          scale: 1.18,
+          duration: 4,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
+
+        // 3. Halo respirando detrás del sello
+        gsap.to(".hero-seal-halo", {
+          opacity: 0.85,
+          scale: 1.14,
+          duration: 3.2,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
+
+        // 4. Reveal del contenido en cascada — entra al BAJAR, se revierte al SUBIR
+        const reveal = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: SCROLL_START,
+            end: "bottom 25%",
+            toggleActions: TOGGLE_ACTIONS,
+            invalidateOnRefresh: true,
+          },
+        });
+        reveal.from(".hero-reveal", {
+          opacity: 0,
+          y: 56,
+          filter: "blur(8px)",
+          duration: 1.1,
+          ease: EASE_REVEAL,
+          stagger: 0.16,
+        });
+
+        // 5. Sello flotante — movimiento dinámico ligado al scroll en ambos sentidos
+        gsap.to(sealRef.current, {
+          y: -130,
+          rotation: 10,
+          scale: 1.06,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: PARALLAX_SCRUB,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // 6. Estadísticas secuenciales — aparecen al bajar, se ocultan al subir
+        gsap.fromTo(
+          ".hero-stat",
+          { opacity: 0, y: 56, scale: 0.94 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            stagger: 0.14,
+            ease: "back.out(1.15)",
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: SCROLL_START,
+              end: "bottom 60%",
+              toggleActions: TOGGLE_ACTIONS,
+            },
+          }
+        );
+      });
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <SectionLayout
@@ -27,119 +156,120 @@ export default function HeroSection() {
       lightBackground="#F4F7FC"
       lightAccent="#2F62B8"
       lightMutedText="#4D5C74"
-      className="isolate min-h-screen lg:h-[90dvh] lg:min-h-[90dvh] lg:max-h-[90dvh]"
+      className="isolate flex min-h-[100dvh] flex-col"
+      ref={sectionRef}
     >
-      <div className="relative h-full overflow-hidden">
-        {/* Glow de fondo */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(1,169,255,0.2),transparent_50%)]" />
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-44 bg-gradient-to-r from-[#0A0E27] to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-44 bg-gradient-to-l from-[#0A0E27] to-transparent" />
+      <div className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden">
+        {/* Background */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden hero-background">
+          <HeroBackgroundCrossfade slides={heroBackgroundSlides} />
+          {/* Scrim principal: vertical en móvil (texto centrado sobre la imagen), diagonal en desktop */}
+          <div
+            className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,rgba(10,14,39,0.8)_0%,rgba(10,14,39,0.45)_30%,rgba(10,14,39,0.4)_55%,rgba(10,14,39,0.85)_100%)] lg:bg-[linear-gradient(105deg,#0A0E27_0%,#0A0E27_8%,rgba(10,14,39,0.82)_26%,rgba(10,14,39,0.35)_48%,rgba(10,14,39,0.08)_52%,rgba(10,14,39,0.25)_78%,rgba(10,14,39,0.45)_100%)]"
+            aria-hidden
+          />
+          {/* Viñeta superior/inferior para profundidad y legibilidad */}
+          <div
+            className="absolute inset-0 z-[2] bg-[linear-gradient(to_bottom,rgba(10,14,39,0.4)_0%,transparent_28%,transparent_72%,rgba(10,14,39,0.5)_100%)]"
+            aria-hidden
+          />
+        </div>
 
-        <div className="mx-auto flex h-full w-[90%] max-w-none flex-col px-4 pb-4 pt-16 md:px-10 md:pt-16 lg:px-16 lg:pb-8 lg:pt-20">
-        
-        {/* Contenedor Principal: Crece para ocupar el espacio central */}
-        <div className="grid min-h-0 flex-1 items-center gap-8 overflow-hidden lg:grid-cols-[1fr_1fr] lg:gap-12">
-          
-          {/* Lado Izquierdo: Textos */}
-          <div className="z-10 flex h-full flex-col justify-center space-y-5 text-center lg:items-start lg:text-left">
-            <BadgeGeneral badge_text={t("badge")} />
-            <div className="space-y-2">
-              <TitleSection
-                as="h1"
-                line1={t("title.line1")}
-                line2={t("title.line2")}
-                className="font-bold leading-[1.1] text-[#0A0E27] dark:text-white"
-                line2ClassName="text-[color:var(--section-accent-light)] dark:text-[color:var(--section-accent-dark)]"
+        <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-none flex-1 flex-col px-4 pb-4 pt-16 md:px-10 md:pt-16 lg:mx-0 lg:w-full lg:px-0 lg:pb-8 lg:pt-20">
+          <div className="flex min-h-0 w-full flex-1 flex-col gap-8 overflow-hidden lg:min-h-0 lg:flex-row lg:items-stretch lg:gap-0 lg:overflow-visible">
+
+            {/* LADO IZQUIERDO */}
+            <div className="relative z-10 flex min-h-0 w-full flex-col justify-center overflow-hidden rounded-2xl lg:ring-1 lg:ring-white/10 lg:backdrop-blur-[2px]">
+              {/* Glow ambiental animado */}
+              <div
+                className="hero-glow pointer-events-none absolute -left-10 top-1/3 z-0 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(70,136,212,0.45),transparent_70%)] opacity-60 blur-2xl"
+                aria-hidden
               />
-            </div>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#4688D4]/14 via-transparent to-transparent" />
 
-            <SectionDescription
-              text={t("description.before")}
-              highlightText={t("description.highlight")}
-              suffixText={t("description.after")}
-              className="mx-auto max-w-xl text-base leading-relaxed text-[color:var(--section-muted-light)] dark:text-white/80 md:text-lg lg:mx-0"
-              highlightClassName="font-bold text-[color:var(--section-accent-light)] dark:text-white"
-            />
+              <div className="relative z-10 flex min-h-0 w-full flex-col justify-center space-y-0 p-6 text-center sm:p-8 lg:h-full lg:items-start lg:justify-center lg:text-left lg:p-8 lg:pl-6 lg:pr-8 xl:pl-10 xl:pr-10 xl:py-12 2xl:pl-14 2xl:pr-12">
+                <div className="mx-auto flex w-full max-w-xl flex-col space-y-5 lg:mx-0 lg:max-w-[min(36rem,calc(50vw-4rem))]">
+                  <div className="hero-reveal flex justify-center lg:justify-start">
+                    <BadgeGeneral badge_text={t("badge")} />
+                  </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-             
-              <ButtonBorder
-                text={t("buttons.protect")}
-                href="/register"
-              >
-              </ButtonBorder>
-             
-             <ButtonRedirect
-              text={t("buttons.services")}
-              href="/register"
-             />
-            </div>
-          </div>
+                  <div className="space-y-2">
+                    <TitleSection
+                      as="h1"
+                      line1={t("title.line1")}
+                      line2={t("title.line2")}
+                      className="font-bold leading-[1.1] text-[#0A0E27] dark:text-white"
+                      line2ClassName="text-[color:var(--section-accent-light)] dark:text-[color:var(--section-accent-dark)]"
+                    />
+                    {/* Acento bajo el título */}
+                    <span
+                      className="mx-auto block h-1 w-20 rounded-full bg-gradient-to-r from-[#4688D4] to-transparent lg:mx-0"
+                      aria-hidden
+                    />
+                  </div>
 
-          {/* Lado Derecho: Visual del Mazo (Ocupa el alto disponible) */}
-          <div className="relative flex h-[260px] w-full items-center justify-center sm:h-[320px] md:h-[380px] lg:h-full lg:min-h-0">
-            <div className="pointer-events-none absolute right-2 top-2 z-30 sm:right-4 sm:top-4 lg:right-16 lg:top-28">
-              <Image
-                src="/images/home/image-sello.png"
-                alt="Sello Stratium Legal"
-                width={190}
-                height={190}
-                className="h-16 w-16 object-contain opacity-90 drop-shadow-[0_10px_20px_rgba(0,0,0,0.35)] sm:h-20 sm:w-20 lg:h-[290px] lg:w-[290px] xl:h-[330px] xl:w-[330px] lg:drop-shadow-[0_26px_56px_rgba(0,0,0,0.5)]"
-                priority
-              />
-            </div>
-            
-            {/* Tarjetas Flotantes - Ajustadas para no salirse */}
-            <div className="absolute left-0 top-[10%] z-20 rounded-xl border border-white/10 bg-[#0A1327]/60 px-3 py-2.5 backdrop-blur-xl md:left-3 md:px-4 md:py-4">
-              <p className="text-2xl font-bold text-white md:text-3xl">24h</p>
-              <p className="text-[9px] uppercase tracking-tighter text-white/60 md:text-[10px]">{t("floatingCards.proposalReady")}</p>
-            </div>
+                  <div className="hero-reveal">
+                    <SectionDescription
+                      text={t("description.before")}
+                      highlightText={t("description.highlight")}
+                      suffixText={t("description.after")}
+                      className="mx-auto max-w-xl text-base leading-relaxed text-[color:var(--section-muted-light)] dark:text-white/80 md:text-lg lg:mx-0"
+                      highlightClassName="font-bold text-[color:var(--section-accent-light)] dark:text-[color:var(--section-accent-dark)]"
+                    />
+                  </div>
 
-            <div className="absolute bottom-[8%] right-0 z-20 rounded-xl border border-white/10 bg-[#0A1327]/60 px-3 py-2.5 text-right backdrop-blur-xl md:right-3 md:px-4 md:py-4">
-              <p className="text-2xl font-bold text-white md:text-3xl">100%</p>
-              <p className="text-[9px] uppercase tracking-tighter text-white/60 md:text-[10px]">{t("floatingCards.digitalRemote")}</p>
-            </div>
-
-            {/* Contenedor de Imagen responsivo al alto (vh) */}
-            <div className="relative h-full w-full max-w-[760px]">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative h-[102%] w-[102%] max-h-[860px] max-w-[860px] transition-transform duration-700 hover:scale-[1.03] md:h-[118%] md:w-[118%] lg:h-[132%] lg:w-[132%]">
-                  <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(1,169,255,0.3),transparent_50%)]" />
-                  <Image
-                    src="/images/home/hero/image-maso.png"
-                    alt="Mazo Legal"
-                    fill
-                    className="object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
-                    priority
-                  />
+                  <div className="hero-reveal flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+                    <ButtonBorder text={t("buttons.protect")} href="#services" onClick={handleScrollToPricing} />
+                    <ButtonRedirect
+                      text={t("buttons.services")}
+                      href={`https://wa.me/5215638315255?text=${encodeURIComponent("Hola, quiero información sobre sus servicios.")}`}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* LADO DERECHO - SELLO */}
+            <div className="relative flex h-[260px] w-full min-w-0 items-center justify-center sm:h-[320px] md:h-[380px] lg:h-full lg:w-[50vw] lg:max-w-[50vw] lg:shrink-0 lg:min-h-0">
+              <div
+                className="pointer-events-none relative z-30 lg:absolute lg:right-16 lg:top-28"
+                ref={sealRef}
+              >
+                {/* Halo respirando detrás del sello */}
+                <div
+                  className="hero-seal-halo pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[125%] w-[125%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(70,136,212,0.5),transparent_65%)] opacity-50 blur-2xl"
+                  aria-hidden
+                />
+                <Image
+                  src="/images/home/image-sello.png"
+                  alt="Sello Stratium Legal"
+                  width={190}
+                  height={190}
+                  className="h-44 w-44 object-contain opacity-90 drop-shadow-[0_10px_20px_rgba(0,0,0,0.35)] sm:h-52 sm:w-52 lg:h-[290px] lg:w-[290px] xl:h-[330px] xl:w-[330px] lg:drop-shadow-[0_26px_56px_rgba(0,0,0,0.5)]"
+                  priority
+                />
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Footer de la sección: Estadísticas (Siempre abajo) */}
-        <div className="mt-3 grid grid-cols-1 gap-4 py-3 sm:grid-cols-2 lg:mt-auto lg:grid-cols-4 lg:gap-5 lg:py-4">
-          {heroStats.map((stat, index) => (
-            <HeroStatItem
-              key={stat.value}
-              value={stat.value}
-              label={t(`stats.${stat.labelKey}`)}
-              className={
-                index === 0
-                  ? "lg:translate-y-0"
-                  : index === 1
-                    ? "lg:-translate-y-3"
-                    : index === 2
-                      ? "lg:translate-y-2"
-                      : "lg:-translate-y-1"
-              }
-            />
-          ))}
-        </div>
+          {/* ESTADÍSTICAS */}
+          <div
+            className="mt-3 grid grid-cols-1 gap-4 px-4 py-3 sm:grid-cols-2 sm:px-6 lg:mt-auto lg:grid-cols-4 lg:gap-5 lg:px-8 lg:py-4 xl:px-12"
+            ref={statsRef}
+          >
+            {heroStats.map((stat) => (
+              <HeroStatItem
+                key={stat.value}
+                value={stat.value}
+                label={t(`stats.${stat.labelKey}`)}
+                className="hero-stat"
+              />
+            ))}
+          </div>
 
+          <HeroDofTicker />
         </div>
       </div>
     </SectionLayout>
-  )
+  );
 }

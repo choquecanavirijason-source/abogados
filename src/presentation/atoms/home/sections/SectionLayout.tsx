@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import type { CSSProperties, ReactNode } from "react"
+import type { CSSProperties, ReactNode, Ref } from "react"
 
 interface SectionLayoutProps {
   id?: string
@@ -12,6 +12,7 @@ interface SectionLayoutProps {
   lightBackground?: string
   lightAccent?: string
   lightMutedText?: string
+  ref?: Ref<HTMLElement>
 }
 
 export default function SectionLayout({
@@ -25,6 +26,7 @@ export default function SectionLayout({
   lightBackground = "#F4F7FC",
   lightAccent = "#2F62B8",
   lightMutedText = "#4D5C74",
+  ref,
 }: SectionLayoutProps) {
   const sectionVars = {
     "--section-bg-dark": darkBackground,
@@ -37,6 +39,7 @@ export default function SectionLayout({
 
   return (
     <section
+      ref={ref}
       id={id}
       style={sectionVars}
       className={cn(

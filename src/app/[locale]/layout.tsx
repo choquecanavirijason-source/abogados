@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Dancing_Script } from "next/font/google";
 import { setRequestLocale } from "next-intl/server";
 import "@/styles/globals.css";
 import AppLayout from "@/presentation/templates/app/AppLayout";
@@ -35,28 +36,53 @@ const euclidSquare = localFont({
   display: "swap",
 });
 
+// Fuente manuscrita (estilo carta) para citas destacadas
+const scriptFont = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-script",
+  display: "swap",
+});
+
+const SITE_URL = "https://stratiumlegal.com";
+const SITE_NAME = "Stratium Legal";
+const SITE_DESCRIPTION =
+  "Cumplimiento legal corporativo remoto y rápido para empresas en México. Resolvemos tus obligaciones de la LGSM, el CFF y el Código de Comercio, y te ayudamos a evitar multas de hasta $208,000 MXN.";
+
 export const metadata: Metadata = {
   title: {
-    default: "Nois - Legal Framework",
-    template: "%s |",
+    default: "Stratium Legal — Cumplimiento legal corporativo en México",
+    template: "%s | Stratium Legal",
   },
-  metadataBase: new URL("https://alphaglobalmarket.io"),
-
+  metadataBase: new URL(SITE_URL),
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "cumplimiento legal",
+    "LGSM",
+    "CFF",
+    "Código de Comercio",
+    "libros corporativos",
+    "persona moral",
+    "abogados México",
+    "Stratium Legal",
+  ],
   icons: {
     icon: "/icons/logo.ico",
+    shortcut: "/favicon.ico",
   },
-  authors: [{ name: "Alpha Global Market", url: "https://alphaglobalmarket.io" }],
-  creator: "Alpha Global Market",
-  publisher: "Alpha Global Market",
-  category: "Finance",
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "Legal",
   alternates: {
-    canonical: "https://alphaglobalmarket.io",
+    canonical: "/",
     languages: {
-      "en-US": "https://alphaglobalmarket.io/en",
-      "es-ES": "https://alphaglobalmarket.io/es",
-      "zh-CN": "https://alphaglobalmarket.io/cn",
-      "hi-IN": "https://alphaglobalmarket.io/in",
-    }
+      "es-MX": "/es",
+      en: "/en",
+      "zh-CN": "/cn",
+      "hi-IN": "/in",
+      "x-default": "/es",
+    },
   },
   robots: {
     index: true,
@@ -70,38 +96,28 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Alpha Global Market - Live Trading",
-    locale: "en_US",
-    url: "https://alphaglobalmarket.io",
-    siteName: "Alpha Global Market",
-    description: "We connect investors, identify talented traders, and fund the most profitable ones. We boost your success with capital, support, and strategic opportunities.",
+    title: "Stratium Legal — La ley no espera. Tu empresa tampoco.",
+    locale: "es_MX",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    description: SITE_DESCRIPTION,
     images: [
       {
-        url: "https://alphaglobalmarket.io/logos/logo.png",
+        url: "/images/logos/stratium.png",
         width: 1200,
         height: 630,
-        alt: "Logo AGM",
+        alt: "Stratium Legal — cumplimiento legal corporativo en México",
       },
       {
-        url: "https://alphaglobalmarket.io/logos/logo-icon.png",
-        width: 1800,
-        height: 1600,
-        alt: "Logo AGM Icon",
+        url: "/images/logos/logo.png",
+        alt: "Stratium Legal",
       },
-      {
-        url: "https://alphaglobalmarket.io/wallpapers/image_fondo.jpg",
-        width: 1800,
-        height: 1600,
-        alt: "Image Found",
-      }
     ],
     type: "website",
-    alternateLocale: ["es", "zh_CN", "hi_IN"],
-    emails: ["support@alphaglobalmarket.io", "technology@alphaglobalmarket.io", "isaac@alphaglobalmarket.io"],
-    countryName: "Emiratos Arabes Unidos",
+    alternateLocale: ["en_US", "zh_CN", "hi_IN"],
+    countryName: "México",
   },
-  abstract: "We connect investors, identify talented traders, and fund the most profitable ones. We boost your success with capital, support, and strategic opportunities.",
-  applicationName: "Alpha Global Market",
+  applicationName: SITE_NAME,
   formatDetection: {
     telephone: false,
     address: false,
@@ -109,8 +125,8 @@ export const metadata: Metadata = {
     email: false,
     url: false,
   },
-  manifest: "https://alphaglobalmarket.io/manifest.json",
-  classification: "Finance"
+  manifest: "/manifest.json",
+  classification: "Legal",
 };
 
 type Props = {
@@ -144,64 +160,36 @@ export default async function RootLayout({ params, children }: Props) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning className={`dark ${euclidSquare.variable}`}>
+    <html lang={locale} suppressHydrationWarning className={`dark ${euclidSquare.variable} ${scriptFont.variable}`}>
       <head>
         <Script type="application/ld+json"  strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "FinancialService",
-            name: "Alpha Global Market",
-            url: "https://alphaglobalmarket.io",
-            logo: "https://alphaglobalmarket.io/logos/logo.png",
-            description: "We connect investors, identify talented traders, and fund the most profitable ones. We boost your success with capital, support, and strategic opportunities.",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "Dubai, United Arab Emirates",
-              addressLocality: "Anytown",
-            },
-            email: "support@alphaglobalmarket.io",
-            sameAs: [
-
-            ],
-            serviceType: "FinancialService",
+            "@type": "LegalService",
+            name: SITE_NAME,
+            url: SITE_URL,
+            logo: `${SITE_URL}/images/logos/logo.png`,
+            image: `${SITE_URL}/images/home/hero/stratium.png`,
+            description: SITE_DESCRIPTION,
+            serviceType: "Cumplimiento legal corporativo",
             areaServed: {
               "@type": "Country",
-              name: "Worldwide",
+              name: "México",
             },
+            availableLanguage: ["es", "en"],
             provider: {
               "@type": "Organization",
-              name: "Alpha Global Market",
-              url: "https://alphaglobalmarket.io",
-              logo: "https://alphaglobalmarket.io/logos/logo.png",
-              sameAs: [
-                "https://alphaglobalmarket.io",
-              ]
+              name: SITE_NAME,
+              url: SITE_URL,
+              logo: `${SITE_URL}/images/logos/logo.png`,
             },
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "Customer Service",
-              email: "support@alphaglobalmarket.io",
-              areaServed: {
-                "@type": "Country",
-                name: "Worldwide",
-              },  
-              availableLanguage: "English",
+              areaServed: "MX",
+              availableLanguage: ["Spanish", "English"],
             },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.8",
-              ratingCount: "100",
-            },
-            review: {
-              "@type": "Review",
-              reviewBody: "I love this product! It is so easy to use and it works great.",
-              reviewRating: {
-                "@type": "Rating",
-                ratingValue: "5",
-                ratingCount: "100",
-              },
-            }
           })
         }}
          />

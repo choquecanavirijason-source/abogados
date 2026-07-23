@@ -1,11 +1,23 @@
 {
+  "FloatingChat": {
+    "ariaLabel": "Open WhatsApp chat",
+    "title": "Legal Advice",
+    "status": "We reply in minutes",
+    "greeting": "Hi! 👋 How can we help you today? Send us a message and a lawyer will assist you.",
+    "cta": "Start chat",
+    "message": "Hello, I would like information about your legal services."
+  },
   "Header": {
     "nav": {
+      "home": "Home",
       "services": "Services",
       "process": "Process",
       "pricing": "Pricing",
       "faq": "FAQ",
       "dof": "Official Gazette",
+      "terms": "Terms and conditions",
+      "company": "Company",
+      "privacy": "Comprehensive Privacy Notice",
       "theme": "Theme",
       "light": "Light",
       "dark": "Dark",
@@ -40,11 +52,20 @@
       "maxFine": "Maximum annual fine",
       "proposal": "Closed proposal",
       "remote": "Remote"
+    },
+    "dofTicker": {
+      "title": "Official Journal of the Federation",
+      "error": "Could not load DOF summary. Try again later.",
+      "empty": "No publications available right now."
     }
   },
   "Services": {
-    "title": "What you don't know can cost you.",
+    "title": {
+      "line1": "What you don't know",
+      "line2": "can cost you."
+    },
     "description": "The LGSM, Commercial Code, and CFF establish clear obligations for every legal entity. Not knowing them does not exempt compliance, and the consequences are real.",
+    "disclaimer": "References: LGSM, Commercial Code, and CFF.",
     "cards": [
       {
         "subtitle": "LGSM · ARTS. 128, 194, 219",
@@ -208,6 +229,35 @@
       ]
     }
   },
+  "Team": {
+    "badge": "Team",
+    "title": {
+      "line1": "Legal team",
+      "line2": "members"
+    },
+    "description": "Meet the partners who advise our clients on corporate, contractual, notarial, and business expansion matters.",
+    "disclaimer": "Click a profile to learn more.",
+    "modal": {
+      "close": "Close"
+    },
+    "members": [
+      {
+        "name": "Lic. Diego Lazcano González",
+        "role": "Partner | Corporate, contracts and supply chain",
+        "bio": "Specialist in corporate law and in-house legal management, with experience in the comprehensive administration of commercial companies and the structuring of business operations. Focused on drafting, negotiating, and reviewing commercial, lease, purchase-sale, and services agreements, as well as designing legal strategies for corporate and supply-chain operations. Advises companies on corporate, contractual, and financial matters, with particular interest in business groups, commercial operations, and expanding companies."
+      },
+      {
+        "name": "Lic. Esteban Santiago Viñas Caballero",
+        "role": "Partner | Corporate, civil and notarial practice",
+        "bio": "Specialist in corporate, civil, and notarial practice, with experience in the incorporation, restructuring, and operation of commercial companies under the LGSM. Has participated in the drafting and protocolization (notarial recording) of shareholders' meeting minutes, capital increases and decreases, share transfers, granting of powers of attorney, and corporate regularization for national companies and family-wealth groups. Also has extensive experience in civil law, including drafting and reviewing contracts, as well as succession proceedings and complex real-estate transactions. His practice combines strong legal training with experience in registry, corporate, and notarial matters. Additionally, he is a national-team rugby player, a discipline that has strengthened his leadership, teamwork skills, and strategic focus."
+      },
+      {
+        "name": "Lic. Diego Solano García",
+        "role": "Partner | Commercial companies and franchises",
+        "bio": "Specialist in incorporating and structuring commercial companies under the LGSM, with a particular focus on franchise models and commercial expansion. Advises national and international companies on formalizing their legal presence in Mexico, from the articles of incorporation to franchise agreements and corporate books. Particular interest in startups, business groups, and growing brands."
+      }
+    ]
+  },
   "PricingGrid": {
     "badge": "Pricing",
     "title": {
@@ -216,6 +266,11 @@
     },
     "description": "All plans include digital delivery with full legal validity and personalized advisory.",
     "button": "Get a quote",
+    "modal": {
+      "title": "Request a quote",
+      "selectedPlan": "Selected plan",
+      "close": "Close"
+    },
     "plans": {
       "starter": {
         "badge": "New companies",
@@ -223,7 +278,7 @@
         "description": "To begin with strong legal foundations from day one.",
         "price": "$8,000",
         "priceSuffix": "MXN",
-        "priceNote": "base price - varies by company type",
+        "priceNote": "pago único · precio base",
         "features": [
           "Company incorporation",
           "Initial corporate books",
@@ -236,9 +291,9 @@
         "badge": "Most popular",
         "title": "Regularization",
         "description": "To catch up with pending corporate compliance obligations.",
-        "price": "$12,000",
-        "priceSuffix": "MXN",
-        "priceNote": "base price - varies by years of delay",
+        "price": "$15,000",
+        "priceSuffix": "MXN/mes",
+        "priceNote": "suscripción mensual",
         "features": [
           "Full corporate diagnostic",
           "Corporate history reconstruction",
@@ -251,9 +306,9 @@
         "badge": "Annual subscription",
         "title": "Maintenance",
         "description": "Always compliant, no worries, year after year.",
-        "price": "$6,000",
-        "priceSuffix": "MXN/year",
-        "priceNote": "ideal for ongoing compliance continuity",
+        "price": "$30,000",
+        "priceSuffix": "MXN",
+        "priceNote": "pago único o por etapa (a definir)",
         "features": [
           "Annual ordinary meeting",
           "Corporate books updates",
@@ -331,6 +386,9 @@
         "advisory": "General legal advisory"
       },
       "button": "Book free consultation",
+      "sending": "Sending…",
+      "success": "Message sent! We'll reply within 24 hours.",
+      "error": "Couldn't send. Please try again or email us directly.",
       "helper": "We reply in less than 24h. No spam. No commitment."
     }
   },

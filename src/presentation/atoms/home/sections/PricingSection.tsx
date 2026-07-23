@@ -1,12 +1,18 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
 import { useTranslations } from "next-intl"
 import SectionLayout from "./SectionLayout"
 import TitleSection from "../../common/title/TitleSection"
 import SectionDescription from "../../common/text/SectionDescription"
 import AccentGlassCard from "../../common/cards/AccentGlassCard"
+import { EASE_REVEAL, SCROLL_START, TOGGLE_ACTIONS } from "./scrollAnimation"
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 type PricingPlan = {
   id: string
@@ -79,7 +85,15 @@ export default function PricingSection() {
   const t = useTranslations("Pricing")
   const [current, setCurrent] = useState(0)
   const [visibleCards, setVisibleCards] = useState(1)
+  const [trackHeight, setTrackHeight] = useState<number | null>(null)
   const total = pricingPlans.length
+
+  const sectionRef = useRef<HTMLElement>(null)
+  const cardRefs = useRef<(HTMLElement | null)[]>([])
+  const firstRun = useRef(true)
+  const touchStartX = useRef<number | null>(null)
+  const touchStartY = useRef<number | null>(null)
+  const isSwiping = useRef(false)
 
   useEffect(() => {
     const mdMediaQuery = window.matchMedia("(min-width: 768px)")
@@ -100,6 +114,26 @@ export default function PricingSection() {
     }
   }, [])
 
+  // Ajusta la altura del carrusel a la tarjeta activa para que el texto nunca se recorte
+  useEffect(() => {
+    const measure = () => {
+      const el = cardRefs.current[current]
+      if (el) setTrackHeight(el.offsetHeight)
+    }
+
+    measure()
+
+    const el = cardRefs.current[current]
+    const observer = new ResizeObserver(measure)
+    if (el) observer.observe(el)
+    window.addEventListener("resize", measure)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener("resize", measure)
+    }
+  }, [current, visibleCards])
+
   const pageCount = useMemo(() => total, [total])
 
   const handleNext = () => {
@@ -110,6 +144,41 @@ export default function PricingSection() {
     setCurrent((prev) => (prev - 1 + total) % total)
   }
 
+  // Gestos táctiles para mover el carrusel con el dedo en móvil
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    touchStartX.current = touch.clientX
+    touchStartY.current = touch.clientY
+    isSwiping.current = false
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return
+    const touch = e.touches[0]
+    const deltaX = touch.clientX - touchStartX.current
+    const deltaY = touch.clientY - touchStartY.current
+    // Solo consideramos swipe horizontal si predomina sobre el desplazamiento vertical
+    if (!isSwiping.current && Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 8) {
+      isSwiping.current = true
+    }
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current
+    const threshold = 50 // px mínimos para cambiar de tarjeta
+    if (isSwiping.current && Math.abs(deltaX) > threshold) {
+      if (deltaX < 0) {
+        handleNext()
+      } else {
+        handlePrev()
+      }
+    }
+    touchStartX.current = null
+    touchStartY.current = null
+    isSwiping.current = false
+  }
+
   const getRelativeOffset = (index: number) => {
     let diff = index - current
     if (diff > total / 2) diff -= total
@@ -117,36 +186,118 @@ export default function PricingSection() {
     return diff
   }
 
+  // Reveal del encabezado y los controles ligado al scroll (bidireccional, como las demás secciones)
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".pricing-reveal", {
+          opacity: 0,
+          y: 44,
+          filter: "blur(6px)",
+          duration: 1,
+          ease: EASE_REVEAL,
+          stagger: 0.14,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: SCROLL_START,
+            end: "bottom 30%",
+            toggleActions: TOGGLE_ACTIONS,
+            invalidateOnRefresh: true,
+          },
+        })
+
+        // Glow ambiental pulsante para dar vida al fondo plano
+        gsap.to(".pricing-glow", {
+          opacity: 0.5,
+          scale: 1.15,
+          duration: 3.2,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        })
+      })
+    },
+    { scope: sectionRef }
+  )
+
+  // Carrusel movido por GSAP: cada tarjeta se anima a su posición al cambiar el slide
+  useGSAP(
+    () => {
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+      cardRefs.current.forEach((el, index) => {
+        if (!el) return
+
+        const offset = getRelativeOffset(index)
+        const isCenter = offset === 0
+        const isVisible = visibleCards === 1 ? isCenter : Math.abs(offset) <= 1
+
+        // xPercent en GSAP es relativo al ancho de la propia tarjeta: -50 centra, offset*62 la desplaza
+        const xPercent = -50 + (visibleCards === 1 ? 0 : offset * 62)
+        const scale = isCenter ? 1 : 0.88
+        const opacity = isVisible ? (isCenter ? 1 : 0.35) : 0
+        const zIndex = isCenter ? 30 : isVisible ? 20 : 0
+
+        gsap.set(el, { zIndex })
+
+        if (firstRun.current || prefersReduced) {
+          gsap.set(el, { xPercent, scale, opacity })
+        } else {
+          gsap.to(el, {
+            xPercent,
+            scale,
+            opacity,
+            duration: 0.6,
+            ease: "power3.out",
+            overwrite: "auto",
+          })
+        }
+      })
+
+      firstRun.current = false
+    },
+    { scope: sectionRef, dependencies: [current, visibleCards] }
+  )
+
   return (
     <SectionLayout
       id="services"
-      darkBackground="#0A0E27"
+      darkBackground="#494E57"
       darkAccent="#4688D4"
       darkMutedText="#B0BAC6"
-      className="min-h-screen py-16 md:py-20"
+      className="relative min-h-screen py-16 md:py-20"
+      ref={sectionRef}
     >
-      <div className="mx-auto w-[90%] max-w-[1200px]">
-       
+      {/* Glow ambiental animado */}
+      <div
+        aria-hidden
+        className="pricing-glow pointer-events-none absolute left-1/2 top-1/3 -z-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(70,136,212,0.22),transparent_70%)] opacity-30 blur-3xl"
+      />
+
+      <div className="relative z-10 mx-auto w-[90%] max-w-[1200px]">
+
         <div className="mx-auto mt-2 flex max-w-3xl flex-col items-center text-center">
-         
+
   <TitleSection
             as="h2"
             line1={t("title.line1")}
             line2={t("title.line2")}
             inlineLine2
-            className="font-bold leading-[1.1] text-white"
+            className="pricing-reveal font-bold leading-[1.1] text-white"
             line2ClassName="font-bold text-[#4688D4]"
           />
 
 
           <SectionDescription
             text={t("description")}
-            className="mx-auto text-[color:var(--section-muted-dark)]"
+            className="pricing-reveal mx-auto text-[color:var(--section-muted-dark)]"
           />
         </div>
 
         <div className="mt-10">
-          <div className="flex items-center justify-end gap-2">
+          <div className="pricing-reveal flex items-center justify-end gap-2">
             <button
               type="button"
               onClick={handlePrev}
@@ -165,37 +316,35 @@ export default function PricingSection() {
             </button>
           </div>
 
-          <div className="mt-4 overflow-hidden">
-            <div className="relative mx-auto h-[510px] w-full max-w-[1360px] md:h-[620px]">
+          <div className="pricing-reveal mt-4 overflow-hidden">
+            <div
+              className="relative mx-auto w-full max-w-[1360px] touch-pan-y select-none transition-[height] duration-500 ease-out min-h-[510px] md:min-h-[620px]"
+              style={trackHeight ? { height: trackHeight } : undefined}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               {pricingPlans.map((plan, index) => {
                 const offset = getRelativeOffset(index)
                 const isCenter = offset === 0
                 const isVisible = visibleCards === 1 ? isCenter : Math.abs(offset) <= 1
 
-                const xPercent = visibleCards === 1 ? 0 : offset * 62
-                const scale = isCenter ? 1 : 0.88
-                const opacity = isVisible ? (isCenter ? 1 : 0.35) : 0
-                const zIndex = isCenter ? 30 : isVisible ? 20 : 0
-
                 return (
                   <article
                     key={plan.id}
-                    className="absolute left-1/2 top-0 w-full max-w-[36rem] px-3 transition-all duration-500 ease-out md:px-4"
-                    style={{
-                      transform: `translateX(calc(-50% + ${xPercent}%)) scale(${scale})`,
-                      opacity,
-                      zIndex,
+                    ref={(el) => {
+                      cardRefs.current[index] = el
                     }}
+                    className="absolute left-1/2 top-0 w-full max-w-[36rem] px-3 will-change-transform md:px-4"
                     aria-hidden={!isVisible}
                   >
                     <AccentGlassCard className="min-h-[475px] md:min-h-[535px]" accentClassName={plan.accent}>
-                      <p className="text-xs uppercase tracking-[0.22em] text-[#A9BBDD]/70">{t(plan.stepKey)}</p>
-                      <h3 className="mt-5 text-[38px] font-semibold leading-tight text-white md:text-[42px]">{t(plan.titleKey)}</h3>
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-[#A9BBDD]/70 sm:text-xs">{t(plan.stepKey)}</p>
+                      <h3 className="mt-4 text-balance break-words text-[28px] font-semibold leading-[1.12] text-white sm:mt-5 sm:text-[34px] md:text-[42px]">{t(plan.titleKey)}</h3>
                       <div className="mt-5 h-px w-full bg-white/14" />
                       <p className="mt-6 text-lg leading-relaxed text-[#D8E1F3]/90 md:text-[19px]">{t(plan.descriptionKey)}</p>
 
-                      <div className="mt-10 flex items-center justify-between gap-3">
-                        <p className="text-[32px] font-semibold text-white">{t(plan.priceKey)}</p>
+                      <div className="mt-10 flex items-center gap-3">
                         <span className="inline-flex rounded-md border border-[#4E79B9]/45 bg-[#12284C] px-2.5 py-1 text-[11px] uppercase tracking-wider text-[#8FC1FF]">
                           {t(plan.badgeKey)}
                         </span>
@@ -210,7 +359,7 @@ export default function PricingSection() {
             </div>
           </div>
 
-          <div className="mt-5 flex items-center justify-center gap-2">
+          <div className="pricing-reveal mt-5 flex items-center justify-center gap-2">
             {Array.from({ length: pageCount }).map((_, index) => (
               <button
                 key={`dot-${index}`}

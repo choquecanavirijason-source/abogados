@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Link as I18nLink } from "@/i18n/navigation";
 import OptionsCenter from "@/presentation/molecules/layout/OptionsCenter";
 import ButtonsRight from "@/presentation/molecules/layout/ButtonsRight";
+import SwitchLanguage from "@/presentation/atoms/layout/switch/switch-language";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -18,15 +19,15 @@ export default function Header() {
           <I18nLink
             href="/"
             className="flex items-center shrink-0"
-            aria-label="Alpha Global Market - Inicio"
+            aria-label="Stratium Legal - Inicio"
             onClick={() => setMobileMenuOpen(false)}
           >
             <Image
               src="/images/logos/logo-icon.svg"
-              alt="Alpha Global Market"
+              alt="Stratium Legal"
               width={50}
               height={50}
-              className="object-contain"
+              className="h-[50px] w-[50px] object-contain"
               priority
             />
           </I18nLink>
@@ -40,16 +41,19 @@ export default function Header() {
           <ButtonsRight />
         </div>
 
-        <button
-          type="button"
-          className="lg:hidden inline-flex items-center justify-center rounded-md border border-white/20 bg-white/5 p-2 text-white hover:bg-white/10 transition-colors cursor-pointer"
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-          aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-header-menu"
-        >
-          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-3 lg:hidden">
+          <SwitchLanguage />
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md border border-white/20 bg-white/5 p-2 text-white hover:bg-white/10 transition-colors cursor-pointer"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-header-menu"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -64,7 +68,7 @@ export default function Header() {
           >
             <OptionsCenter isMobile />
             <div className="mt-4 border-t border-white/10 pt-4">
-              <ButtonsRight className="flex-col items-stretch gap-3" />
+              <ButtonsRight className="flex-col items-center gap-3" showLanguage={false} />
             </div>
           </motion.div>
         )}

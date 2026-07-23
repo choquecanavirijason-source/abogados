@@ -64,7 +64,7 @@ export default function SwitchLanguage() {
           alt=""
           width={20}
           height={14}
-          className="object-cover rounded-sm shrink-0"
+          className="h-3.5 w-5 object-cover rounded-sm shrink-0"
           aria-hidden
         />
         <span className="text-xs font-medium uppercase tracking-wide text-white">
@@ -99,7 +99,7 @@ export default function SwitchLanguage() {
                     alt=""
                     width={20}
                     height={14}
-                    className="object-cover rounded-sm shrink-0"
+                    className="h-3.5 w-5 object-cover rounded-sm shrink-0"
                   />
                   <span className="font-medium uppercase tracking-wide">
                     {lang.code}
