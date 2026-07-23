@@ -11,6 +11,7 @@ import { ClipboardList, FileCheck, FileText } from "lucide-react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { EASE_REVEAL, SCROLL_START, TOGGLE_ACTIONS } from "./scrollAnimation"
+import { useNearViewport } from "@/presentation/hooks/useNearViewport"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -19,9 +20,11 @@ export default function SteepsSection() {
 
   const sectionRef = useRef<HTMLElement>(null)
   const lineRef = useRef<HTMLDivElement>(null)
+  const isNear = useNearViewport(sectionRef)
 
   useGSAP(
     () => {
+      if (!isNear) return
       const mm = gsap.matchMedia()
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -100,7 +103,7 @@ export default function SteepsSection() {
         })
       })
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isNear] }
   )
 
   const steps = [
@@ -190,7 +193,7 @@ export default function SteepsSection() {
             </div>
             <div className="pointer-events-none absolute right-16 top-28 z-30 hidden lg:block">
               <Image
-                src="/images/home/image-sello.png"
+                src="/images/home/image-sello.webp"
                 alt="Sello Stratium Legal"
                 width={140}
                 height={140}

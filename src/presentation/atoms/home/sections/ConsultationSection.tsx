@@ -11,6 +11,7 @@ import BadgeGeneral from "../../common/badge/BadgeGeneral"
 import TitleSection from "../../common/title/TitleSection"
 import SectionLayout from "./SectionLayout"
 import { EASE_REVEAL, SCROLL_START, TOGGLE_ACTIONS } from "./scrollAnimation"
+import { useNearViewport } from "@/presentation/hooks/useNearViewport"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -24,6 +25,7 @@ export default function ConsultationSection() {
   const t = useTranslations("Consultation")
 
   const sectionRef = useRef<HTMLElement>(null)
+  const isNear = useNearViewport(sectionRef)
   const [form, setForm] = useState(initialForm)
   const [status, setStatus] = useState<SubmitStatus>("idle")
 
@@ -74,6 +76,7 @@ export default function ConsultationSection() {
 
   useGSAP(
     () => {
+      if (!isNear) return
       const mm = gsap.matchMedia()
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -110,7 +113,7 @@ export default function ConsultationSection() {
         })
       })
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isNear] }
   )
 
   return (

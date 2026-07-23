@@ -53,7 +53,6 @@ export default function HeroBackgroundCrossfade({
             className="object-cover object-[0%_38%] lg:object-center"
             sizes="100vw"
             priority={i === 0}
-            loading="eager"
           />
         </motion.div>
       ))}

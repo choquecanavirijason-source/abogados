@@ -28,10 +28,9 @@ const heroStats = [
 ];
 
 const heroBackgroundSlides = [
-  { src: "/images/home/hero/mexi.png", alt: "México" },
-  { src: "/images/home/hero/mexico2.png", alt: "México" },
-  { src: "/images/home/hero/mexico.png", alt: "México" },
-  { src: "/images/home/hero/indi.png", alt: "India" },
+  { src: "/images/home/hero/mexi.webp", alt: "México" },
+  { src: "/images/home/hero/mexico2.webp", alt: "México" },
+  { src: "/images/home/hero/mexico.webp", alt: "México" },
 ] as const;
 
 export default function HeroSection() {
@@ -241,7 +240,7 @@ export default function HeroSection() {
                   aria-hidden
                 />
                 <Image
-                  src="/images/home/image-sello.png"
+                  src="/images/home/image-sello.webp"
                   alt="Sello Stratium Legal"
                   width={190}
                   height={190}

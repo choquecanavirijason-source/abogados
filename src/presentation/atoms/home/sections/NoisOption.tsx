@@ -11,6 +11,7 @@ import { Scale } from "lucide-react"
 import { useTranslations } from "next-intl"
 import Image from "next/image";
 import { EASE_REVEAL, PARALLAX_SCRUB, SCROLL_START, TOGGLE_ACTIONS } from "./scrollAnimation"
+import { useNearViewport } from "@/presentation/hooks/useNearViewport"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -21,9 +22,11 @@ export default function NoisOption() {
 
   const sectionRef = useRef<HTMLElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
+  const isNear = useNearViewport(sectionRef)
 
   useGSAP(
     () => {
+      if (!isNear) return
       const mm = gsap.matchMedia()
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -100,7 +103,7 @@ export default function NoisOption() {
         })
       })
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isNear] }
   )
 
   return (
@@ -125,7 +128,7 @@ export default function NoisOption() {
           {/* Sello flotante (decorativo) */}
           <div className="nois-sello pointer-events-none absolute right-0 top-6 z-30 hidden lg:block">
             <Image
-              src="/images/home/image-sello.png"
+              src="/images/home/image-sello.webp"
               alt="Sello Stratium Legal"
               width={190}
               height={190}

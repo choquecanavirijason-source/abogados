@@ -11,6 +11,7 @@ import { FileText, Archive, AlertTriangle, Scale } from "lucide-react"
 import TitleSection from "../../common/title/TitleSection"
 import { useTranslations } from "next-intl"
 import { EASE_REVEAL, PARALLAX_SCRUB, SCROLL_START, TOGGLE_ACTIONS } from "./scrollAnimation"
+import { useNearViewport } from "@/presentation/hooks/useNearViewport"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -39,9 +40,11 @@ export default function ServicesSection() {
   const bgRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
   const quoteRef = useRef<HTMLQuoteElement>(null)
+  const isNear = useNearViewport(sectionRef)
 
   const { contextSafe } = useGSAP(
     () => {
+      if (!isNear) return
       const mm = gsap.matchMedia()
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -125,7 +128,7 @@ export default function ServicesSection() {
         })
       })
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isNear] }
   )
 
   // Hover premium en las cards: elevación + tilt 3D que sigue el cursor

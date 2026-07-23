@@ -17,6 +17,7 @@ import BadgeGeneral from "@/presentation/atoms/common/badge/BadgeGeneral"
 import TitleSection from "@/presentation/atoms/common/title/TitleSection"
 import SectionLayout from "./SectionLayout"
 import { EASE_REVEAL, SCROLL_START, TOGGLE_ACTIONS } from "./scrollAnimation"
+import { useNearViewport } from "@/presentation/hooks/useNearViewport"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -46,6 +47,7 @@ export default function TeamSection() {
   const dialogTitleId = useId()
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
+  const isNear = useNearViewport(sectionRef)
 
   useEffect(() => {
     setMounted(true)
@@ -53,6 +55,7 @@ export default function TeamSection() {
 
   useGSAP(
     () => {
+      if (!isNear) return
       const mm = gsap.matchMedia()
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -89,7 +92,7 @@ export default function TeamSection() {
         })
       })
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isNear] }
   )
 
   useEffect(() => {
@@ -143,8 +146,8 @@ export default function TeamSection() {
           </p>
         </div>
 
-        <div className="team-grid mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7 lg:grid-cols-3">
-          {members.slice(0, 3).map((member) => (
+        <div className="team-grid mx-auto mt-12 grid max-w-3xl grid-cols-1 justify-center gap-6 md:grid-cols-2 md:gap-7">
+          {members.map((member) => (
             <button
               key={member.name}
               type="button"

@@ -11,6 +11,7 @@ import TitleSection from "../../common/title/TitleSection"
 import SectionDescription from "../../common/text/SectionDescription"
 import AccentGlassCard from "../../common/cards/AccentGlassCard"
 import { EASE_REVEAL, SCROLL_START, TOGGLE_ACTIONS } from "./scrollAnimation"
+import { useNearViewport } from "@/presentation/hooks/useNearViewport"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -94,6 +95,7 @@ export default function PricingSection() {
   const touchStartX = useRef<number | null>(null)
   const touchStartY = useRef<number | null>(null)
   const isSwiping = useRef(false)
+  const isNear = useNearViewport(sectionRef)
 
   useEffect(() => {
     const mdMediaQuery = window.matchMedia("(min-width: 768px)")
@@ -189,6 +191,7 @@ export default function PricingSection() {
   // Reveal del encabezado y los controles ligado al scroll (bidireccional, como las demás secciones)
   useGSAP(
     () => {
+      if (!isNear) return
       const mm = gsap.matchMedia()
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -219,7 +222,7 @@ export default function PricingSection() {
         })
       })
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isNear] }
   )
 
   // Carrusel movido por GSAP: cada tarjeta se anima a su posición al cambiar el slide

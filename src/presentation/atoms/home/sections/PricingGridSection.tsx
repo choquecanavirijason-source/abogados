@@ -11,6 +11,7 @@ import BadgeGeneral from "../../common/badge/BadgeGeneral"
 import TitleSection from "../../common/title/TitleSection"
 import SectionLayout from "./SectionLayout"
 import { EASE_REVEAL, SCROLL_START } from "./scrollAnimation"
+import { useNearViewport } from "@/presentation/hooks/useNearViewport"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -25,6 +26,7 @@ export default function PricingGridSection() {
   const tc = useTranslations("Consultation")
 
   const sectionRef = useRef<HTMLElement>(null)
+  const isNear = useNearViewport(sectionRef)
 
   const [selectedPlan, setSelectedPlan] = useState<(typeof planIds)[number] | null>(null)
   const [form, setForm] = useState(initialForm)
@@ -90,6 +92,7 @@ export default function PricingGridSection() {
 
   useGSAP(
     () => {
+      if (!isNear) return
       const mm = gsap.matchMedia()
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -146,7 +149,7 @@ export default function PricingGridSection() {
       }
       return () => window.removeEventListener("load", onLoad)
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isNear] }
   )
 
   return (

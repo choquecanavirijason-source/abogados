@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useLocale } from "next-intl";
 import { getPrivacyContent, type PrivacySection } from "./privacyContent";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import FloatingWhatsApp from "@/presentation/molecules/layout/FloatingWhatsApp";
 
 /** Convierte "I. Identidad..." o "1. ..." en { number, label } */
@@ -196,6 +196,26 @@ export default function PageLegal() {
   const [activeSection, setActiveSection] = useState<string>("");
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [paneHeight, setPaneHeight] = useState<number | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // El panel de contenido debe medir exactamente lo mismo que el índice
+  useEffect(() => {
+    const headerEl = headerRef.current;
+    if (!headerEl) return;
+
+    const updateHeight = () => setPaneHeight(headerEl.offsetHeight);
+    updateHeight();
+
+    const resizeObserver = new ResizeObserver(updateHeight);
+    resizeObserver.observe(headerEl);
+    window.addEventListener("resize", updateHeight);
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
 
   const t = {
     back: locale === "es" ? "Volver al inicio" : locale === "cn" ? "返回首页" : locale === "in" ? "होम पर वापस" : "Back to home",
@@ -227,22 +247,39 @@ export default function PageLegal() {
 
     document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
 
+    // En desktop el contenido tiene su propio scroll (panel tipo lector);
+    // en mobile hace scroll la página completa. Escuchamos ambos y usamos
+    // el que realmente esté desplazándose.
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pane = contentRef.current;
+      const paneScrolls = pane && pane.scrollHeight > pane.clientHeight + 4;
+      const scrollTop = paneScrolls ? pane!.scrollTop : window.scrollY;
+      const docHeight = paneScrolls
+        ? pane!.scrollHeight - pane!.clientHeight
+        : document.documentElement.scrollHeight - window.innerHeight;
       setProgress(docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0);
       setShowBackToTop(scrollTop > 600);
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
+    const pane = contentRef.current;
+    pane?.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
+      pane?.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToTop = () => {
+    const pane = contentRef.current;
+    if (pane && pane.scrollHeight > pane.clientHeight + 4) {
+      pane.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
   const handlePrint = () => window.print();
 
   // Back-to-top progress ring geometry
@@ -276,7 +313,7 @@ export default function PageLegal() {
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
           {/* === LEFT COLUMN - STICKY SIDEBAR === */}
-          <header className="space-y-6 lg:col-span-4 lg:sticky lg:top-8 lg:self-start lg:h-fit">
+          <header ref={headerRef} className="space-y-6 lg:col-span-4 lg:sticky lg:top-8 lg:self-start lg:h-fit">
             {/* Identity card */}
             <div className="overflow-hidden rounded-3xl border border-black/[0.06] bg-white/80 shadow-[0_8px_30px_rgba(10,14,39,0.06)] backdrop-blur">
               <div className="h-1.5 bg-linear-to-r from-[#0A0E27] via-[#4688D4] to-[#0A0E27]" />
@@ -380,8 +417,15 @@ export default function PageLegal() {
             </nav>
           </header>
 
-          {/* === RIGHT COLUMN - CONTENT === */}
-          <div className="lg:col-span-8">
+          {/* === RIGHT COLUMN - CONTENT (panel con scroll propio, misma altura que el índice) ===
+              El límite de altura solo debe aplicar en desktop: se guarda como variable CSS y
+              se consume dentro de la utilidad "lg:max-h-[var(--pane-h)]" para que en mobile
+              (sin overflow-y-auto) el contenido nunca quede recortado sin poder scrollear. */}
+          <div
+            ref={contentRef}
+            style={paneHeight ? ({ "--pane-h": `${paneHeight}px` } as React.CSSProperties) : undefined}
+            className="lg:col-span-8 lg:sticky lg:top-8 lg:max-h-(--pane-h) lg:overflow-y-auto lg:overscroll-contain lg:pr-2 lg:[scrollbar-width:thin] print:static print:h-auto print:overflow-visible print:pr-0"
+          >
             <article className="space-y-5">
               {c.sections.map((section, idx) => {
                 const sectionId = slugify(section.title);
