@@ -175,7 +175,7 @@ export default function ServicesSection() {
         <div ref={bgRef} className="pointer-events-none absolute -inset-x-0 -top-[12%] -bottom-[12%] z-0">
           {/* Foto del bufete, sutil */}
           <Image
-            src="/images/home/hero/lawyer-background.png"
+            src="/images/home/hero/lawyer-background.webp"
             alt=""
             aria-hidden
             fill
@@ -191,7 +191,7 @@ export default function ServicesSection() {
           <div className="absolute -bottom-24 -right-20 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(70,136,212,0.15),transparent_70%)] blur-2xl" />
           {/* Mazo como marca de agua tenue */}
           <Image
-            src="/images/home/hero/image-maso.png"
+            src="/images/home/hero/image-maso.webp"
             alt=""
             aria-hidden
             width={560}

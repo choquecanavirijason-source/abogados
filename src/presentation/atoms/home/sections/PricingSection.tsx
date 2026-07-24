@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useLayoutEffect, useMemo, useRef, useState } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -97,7 +97,10 @@ export default function PricingSection() {
   const isSwiping = useRef(false)
   const isNear = useNearViewport(sectionRef)
 
-  useEffect(() => {
+  // useLayoutEffect (no useEffect): resuelve el número de tarjetas visibles ANTES
+  // de que el navegador pinte, para no arrancar en el layout de 1 tarjeta y saltar
+  // al de 3 después del primer paint (eso causaba layout shift en desktop).
+  useLayoutEffect(() => {
     const mdMediaQuery = window.matchMedia("(min-width: 768px)")
 
     const updateVisibleCards = () => {
@@ -116,8 +119,11 @@ export default function PricingSection() {
     }
   }, [])
 
-  // Ajusta la altura del carrusel a la tarjeta activa para que el texto nunca se recorte
-  useEffect(() => {
+  // Ajusta la altura del carrusel a la tarjeta activa para que el texto nunca se recorte.
+  // useLayoutEffect para medir y aplicar la altura ANTES del paint del navegador —
+  // si se mide en useEffect (post-paint), el contenedor cambia de tamaño después de
+  // pintado y empuja todo el contenido de abajo (layout shift).
+  useLayoutEffect(() => {
     const measure = () => {
       const el = cardRefs.current[current]
       if (el) setTrackHeight(el.offsetHeight)

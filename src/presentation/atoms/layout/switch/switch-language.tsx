@@ -60,7 +60,7 @@ export default function SwitchLanguage() {
         aria-label="Cambiar idioma"
       >
         <Image
-          src={`${FLAG_BASE}/${current.code}.png`}
+          src={`${FLAG_BASE}/${current.code}.webp`}
           alt=""
           width={20}
           height={14}
@@ -95,7 +95,7 @@ export default function SwitchLanguage() {
                   className="w-full flex items-center gap-2 py-2 px-3 text-left text-sm text-white bg-transparent hover:bg-zinc-900 transition-colors focus:outline-none focus:ring-0 cursor-pointer"
                 >
                   <Image
-                    src={`${FLAG_BASE}/${lang.code}.png`}
+                    src={`${FLAG_BASE}/${lang.code}.webp`}
                     alt=""
                     width={20}
                     height={14}
