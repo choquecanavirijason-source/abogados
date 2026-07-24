@@ -205,7 +205,7 @@ export default function TeamSection() {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={dialogTitleId}
-                className="relative z-[1] w-full max-w-3xl max-h-[85vh]"
+                className="relative z-[1] w-full max-w-3xl max-h-[90vh] md:max-w-5xl lg:max-w-6xl"
                 onClick={(event) => event.stopPropagation()}
               >
                 <Button
@@ -215,47 +215,53 @@ export default function TeamSection() {
                   size="icon"
                   onClick={() => setActiveMember(null)}
                   aria-label={t("modal.close")}
-                  className="absolute right-3 top-3 z-[2] cursor-pointer text-white/80 hover:bg-white/10 hover:text-white"
+                  className="absolute right-3 top-3 z-[2] cursor-pointer bg-[#0A0E27]/40 text-white/80 backdrop-blur-sm hover:bg-white/10 hover:text-white"
                 >
                   <X aria-hidden className="h-4 w-4" />
                 </Button>
 
-                <div className="max-h-[85vh] overflow-y-auto rounded-2xl">
-                  <AccentGlassCard
-                    flat
-                    className="w-full"
-                    accentClassName={TEAM_CARD_ACCENT}
-                    contentClassName="flex flex-col items-center text-center"
+                <AccentGlassCard
+                  flat
+                  className="w-full overflow-hidden"
+                  accentClassName={TEAM_CARD_ACCENT}
+                  contentClassName="flex flex-col text-center md:h-[65vh] md:flex-row md:gap-8 md:text-left"
+                >
+                  {/* Imagen — arriba en mobile, a la izquierda (fija, sin scroll) en desktop.
+                      Alto fijo (md:h-[65vh] en el padre) para que mida SIEMPRE igual, sin
+                      importar cuánto texto tenga cada integrante. */}
+                  <div
+                    className="relative -mx-6 -mt-6 mb-6 aspect-3/4 overflow-hidden md:mx-0 md:aspect-auto md:h-[calc(100%+4rem)] md:w-1/2 md:shrink-0 md:-ml-8 md:-mt-8 md:-mb-8"
+                    aria-hidden
                   >
-                    <div
-                      className="-mx-6 -mt-6 mb-6 self-stretch overflow-hidden md:-mx-8 md:-mt-8"
-                      style={{ aspectRatio: "3/4" }}
-                      aria-hidden
-                    >
-                      {MEMBER_PHOTOS[activeMember.name] ? (
-                        <Image
-                          src={MEMBER_PHOTOS[activeMember.name].src}
-                          alt={activeMember.name}
-                          width={400}
-                          height={533}
-                          className="h-full w-full object-cover"
-                          style={{ objectPosition: MEMBER_PHOTOS[activeMember.name].position ?? "center" }}
-                          priority
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-[#2D3A4F]">
-                          <User className="h-24 w-24 text-[#8FA4C4]" strokeWidth={1.25} />
-                        </div>
-                      )}
-                    </div>
+                    {MEMBER_PHOTOS[activeMember.name] ? (
+                      <Image
+                        src={MEMBER_PHOTOS[activeMember.name].src}
+                        alt={activeMember.name}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover"
+                        style={{ objectPosition: MEMBER_PHOTOS[activeMember.name].position ?? "center" }}
+                        priority
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-[#2D3A4F]">
+                        <User className="h-24 w-24 text-[#8FA4C4]" strokeWidth={1.25} />
+                      </div>
+                    )}
+                  </div>
 
-                    <h3 id={dialogTitleId} className="text-xl font-semibold leading-snug text-white md:text-2xl">
-                      {activeMember.name}
-                    </h3>
-                    <p className="mt-2 text-sm font-medium text-[#8AB2EA] md:text-base">{activeMember.role}</p>
-                    <p className="mt-4 text-sm leading-relaxed text-[#B4C3DE] md:text-base">{activeMember.bio}</p>
-                  </AccentGlassCard>
-                </div>
+                  {/* Información — a la derecha, mismo alto fijo que la imagen; si el
+                      texto no cabe, scrollea dentro de su propio espacio (sin achicar la foto). */}
+                  <div className="max-h-[40vh] overflow-y-auto pr-1 md:flex md:h-full md:max-h-none md:flex-1 md:flex-col md:justify-center md:overflow-y-auto md:pr-2 md:[scrollbar-width:thin]">
+                    <div>
+                      <h3 id={dialogTitleId} className="text-2xl font-semibold leading-snug text-white md:text-3xl">
+                        {activeMember.name}
+                      </h3>
+                      <p className="mt-2 text-base font-medium text-[#8AB2EA] md:text-lg">{activeMember.role}</p>
+                      <p className="mt-5 text-base leading-relaxed text-[#B4C3DE] md:text-lg">{activeMember.bio}</p>
+                    </div>
+                  </div>
+                </AccentGlassCard>
               </div>
             </div>,
             document.body

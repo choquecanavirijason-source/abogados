@@ -74,11 +74,11 @@ export default function NoisOption() {
         // 3. Notas legales en cascada
         gsap.from(".nois-note", {
           opacity: 0,
-          y: 40,
-          filter: "blur(6px)",
-          duration: 0.9,
+          y: 24,
+          filter: "blur(2px)",
+          duration: 0.6,
           ease: EASE_REVEAL,
-          stagger: 0.12,
+          stagger: 0.08,
           scrollTrigger: {
             trigger: cardRef.current,
             start: SCROLL_START,
@@ -155,7 +155,7 @@ export default function NoisOption() {
           {/* Tarjeta de notas legales */}
           <div
             ref={cardRef}
-            className="mx-auto mt-12 w-[92%] max-w-[920px] cursor-pointer rounded-2xl border border-white/10 bg-[#06090C] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.45)] transition-all duration-300 hover:border-[#4688D4]/35 hover:shadow-[0_24px_65px_rgba(1,169,255,0.18)] md:p-6"
+            className="mx-auto mt-12 w-[92%] max-w-[920px] cursor-pointer rounded-2xl border border-white/10 bg-[#06090C] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.45)] transition-all duration-300 hover:border-[#4688D4]/35 hover:shadow-[0_20px_30px_rgba(1,169,255,0.1)] md:p-6"
           >
             <div className="grid gap-y-2">
               {legalNoteKeys.map((item) => (
@@ -173,8 +173,8 @@ export default function NoisOption() {
           </div>
 
           {/* Footer */}
-          <div className="mx-auto mt-10 grid w-[92%] max-w-[920px] gap-6 text-[#D1E0D9] md:grid-cols-[1fr_1.4fr] md:items-start">
-            <p className="nois-footer text-4xl font-medium text-white">{t("footer.title")}</p>
+          <div className="mx-auto mt-10 flex w-[92%] max-w-[920px] flex-col gap-4 text-[#D1E0D9]">
+            <p className="nois-footer text-4xl font-medium text-[#4688D4]">{t("footer.title")}</p>
 
             <p className="nois-footer text-sm leading-relaxed text-[#FFFFFF] md:text-base">
               {t("footer.description")}
