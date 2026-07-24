@@ -210,6 +210,24 @@ export default function PageTerms() {
     }
   };
 
+  // Clic en el índice: mueve SOLO el panel de contenido, nunca la ventana.
+  // El <a href="#id"> nativo del navegador puede scrollear la página completa
+  // cuando hay un panel con scroll propio anidado, sacando al sidebar sticky
+  // de su contenedor y cortándolo visualmente.
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const pane = contentRef.current;
+    const target = document.getElementById(sectionId);
+    if (!pane || !target) return;
+
+    const paneRect = pane.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    const offset = targetRect.top - paneRect.top + pane.scrollTop - 12;
+
+    pane.scrollTo({ top: offset, behavior: "smooth" });
+    window.history.replaceState(null, "", `#${sectionId}`);
+  };
+
   // Back-to-top progress ring geometry
   const ringR = 15;
   const ringC = 2 * Math.PI * ringR;
@@ -229,7 +247,7 @@ export default function PageTerms() {
       <div className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-[#4688D4]/10 blur-3xl" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#0f172a08_1px,transparent_1px),linear-gradient(to_bottom,#0f172a08_1px,transparent_1px)] bg-[size:34px_34px] [mask-image:radial-gradient(at_top,black,transparent_70%)]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-16 sm:px-6 md:pt-24 lg:px-8">
+      <div className="relative mx-auto max-w-400 px-4 pb-24 pt-16 sm:px-6 md:pt-24 lg:px-8">
         {/* Back link */}
         <I18nLink
           href="/"
@@ -241,66 +259,59 @@ export default function PageTerms() {
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
           {/* === LEFT COLUMN - STICKY SIDEBAR === */}
-          <header ref={headerRef} className="space-y-6 lg:col-span-4 lg:sticky lg:top-8 lg:self-start lg:h-fit">
-            {/* Identity card */}
-            <div className="overflow-hidden rounded-3xl border border-black/[0.06] bg-white/80 shadow-[0_8px_30px_rgba(10,14,39,0.06)] backdrop-blur">
-              <div className="h-1.5 bg-linear-to-r from-[#0A0E27] via-[#4688D4] to-[#0A0E27]" />
-              <div className="space-y-5 p-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#4688D4]/20 bg-[#4688D4]/[0.06] px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#4688D4]">
-                  <Scale className="h-3.5 w-3.5" />
-                  {c.badge}
+          <header ref={headerRef} className="space-y-4 lg:col-span-6 lg:sticky lg:top-8 lg:self-start lg:h-fit">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+              {/* Identity card */}
+              <div className="overflow-hidden rounded-3xl border border-black/[0.06] bg-white/80 shadow-[0_8px_30px_rgba(10,14,39,0.06)] backdrop-blur">
+                <div className="h-1.5 bg-linear-to-r from-[#0A0E27] via-[#4688D4] to-[#0A0E27]" />
+                <div className="space-y-4 p-5">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-[#4688D4]/20 bg-[#4688D4]/[0.06] px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#4688D4]">
+                    <Scale className="h-3.5 w-3.5" />
+                    {c.badge}
+                  </div>
+
+                  <div>
+                    <h1 className="bg-linear-to-br from-[#0A0E27] via-[#1e3a8a] to-[#4688D4] bg-clip-text text-2xl font-semibold leading-tight tracking-tight text-transparent xl:text-3xl">
+                      {c.pageTitle}
+                    </h1>
+                    {c.tagline && (
+                      <p className="mt-3 border-l-2 border-[#4688D4]/40 pl-3 text-sm italic text-[#4688D4]">
+                        “{c.tagline}”
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="space-y-1 border-t border-slate-100 pt-4 text-sm text-slate-500">
+                    <p className="font-medium text-slate-700">{c.firmName}</p>
+                    <p className="text-xs">{c.lastUpdated}</p>
+                  </div>
+
+                  {/* Download button */}
+                  <a
+                    href={c.downloadUrl}
+                    download
+                    className="group flex w-full items-center justify-center gap-2.5 rounded-full bg-linear-to-r from-[#0A0E27] to-[#4688D4] px-5 py-2.5 text-sm font-medium text-white shadow-[0_8px_30px_rgba(70,136,212,0.28)] transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(70,136,212,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4688D4] focus-visible:ring-offset-2"
+                  >
+                    <ArrowDownToLine className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+                    {c.downloadLabel}
+                  </a>
                 </div>
-
-                <div>
-                  <h1 className="bg-linear-to-br from-[#0A0E27] via-[#1e3a8a] to-[#4688D4] bg-clip-text text-3xl font-semibold leading-tight tracking-tight text-transparent sm:text-4xl">
-                    {c.pageTitle}
-                  </h1>
-                  {c.tagline && (
-                    <p className="mt-3 border-l-2 border-[#4688D4]/40 pl-3 text-sm italic text-[#4688D4]">
-                      “{c.tagline}”
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-1 border-t border-slate-100 pt-4 text-sm text-slate-500">
-                  <p className="font-medium text-slate-700">{c.firmName}</p>
-                  <p className="text-xs">{c.lastUpdated}</p>
-                </div>
-
-                {/* Download button */}
-                <a
-                  href={c.downloadUrl}
-                  download
-                  className="group flex w-full items-center justify-center gap-2.5 rounded-full bg-linear-to-r from-[#0A0E27] to-[#4688D4] px-6 py-3 text-sm font-medium text-white shadow-[0_8px_30px_rgba(70,136,212,0.28)] transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(70,136,212,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4688D4] focus-visible:ring-offset-2"
-                >
-                  <ArrowDownToLine className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
-                  {c.downloadLabel}
-                </a>
-              </div>
-            </div>
-
-            {/* Disclaimer */}
-            {c.disclaimer && (
-              <div className="flex gap-3 rounded-2xl border border-amber-200/70 bg-amber-50/70 p-4 text-[13px] leading-relaxed text-amber-900 backdrop-blur">
-                <ShieldAlert className="h-5 w-5 shrink-0 text-amber-500" />
-                <p>{c.disclaimer}</p>
-              </div>
-            )}
-
-            {/* Table of Contents */}
-            <nav className="hidden rounded-3xl border border-black/[0.06] bg-white/80 p-5 shadow-[0_8px_30px_rgba(10,14,39,0.05)] backdrop-blur lg:block">
-              <div className="mb-3 flex items-center justify-between text-xs font-medium uppercase tracking-widest text-slate-400">
-                <span className="flex items-center gap-2">
-                  <FileText className="h-3.5 w-3.5" />
-                  {t.toc}
-                </span>
-                <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-500">
-                  {c.sections.length}
-                </span>
               </div>
 
-              <ul className="max-h-[48vh] space-y-0.5 overflow-y-auto pr-1 text-[13px] [scrollbar-width:thin]">
-                {c.sections.map((section) => {
+              {/* Table of Contents */}
+              <nav className="hidden rounded-3xl border border-black/[0.06] bg-white/80 p-5 shadow-[0_8px_30px_rgba(10,14,39,0.05)] backdrop-blur lg:block">
+                <div className="mb-3 flex items-center justify-between text-xs font-medium uppercase tracking-widest text-slate-400">
+                  <span className="flex items-center gap-2">
+                    <FileText className="h-3.5 w-3.5" />
+                    {t.toc}
+                  </span>
+                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-500">
+                    {c.sections.length}
+                  </span>
+                </div>
+
+                <ul className="max-h-[54vh] space-y-0.5 overflow-y-auto pr-1 text-[13px] [scrollbar-width:thin]">
+                  {c.sections.map((section) => {
                   const sectionId = slugify(section.title);
                   const isActive = activeSection === sectionId;
                   const { number, label } = splitTitle(section.title);
@@ -309,6 +320,7 @@ export default function PageTerms() {
                     <li key={section.title}>
                       <a
                         href={`#${sectionId}`}
+                        onClick={(e) => scrollToSection(e, sectionId)}
                         className={`group flex items-center gap-3 rounded-xl px-3 py-2 transition-all duration-200 ${
                           isActive
                             ? "bg-[#4688D4]/[0.08] font-medium text-[#4688D4]"
@@ -333,6 +345,15 @@ export default function PageTerms() {
                 })}
               </ul>
             </nav>
+            </div>
+
+            {/* Disclaimer — debajo de la tarjeta e índice, aprovechando el ancho completo */}
+            {c.disclaimer && (
+              <div className="flex gap-3 rounded-2xl border border-amber-200/70 bg-amber-50/70 p-4 text-[13px] leading-relaxed text-amber-900 backdrop-blur">
+                <ShieldAlert className="h-5 w-5 shrink-0 text-amber-500" />
+                <p>{c.disclaimer}</p>
+              </div>
+            )}
           </header>
 
           {/* === RIGHT COLUMN - CONTENT (panel con scroll propio, misma altura que el índice) ===
@@ -342,7 +363,7 @@ export default function PageTerms() {
           <div
             ref={contentRef}
             style={paneHeight ? ({ "--pane-h": `${paneHeight}px` } as React.CSSProperties) : undefined}
-            className="lg:col-span-8 lg:sticky lg:top-8 lg:max-h-(--pane-h) lg:overflow-y-auto lg:overscroll-contain lg:pr-2 lg:[scrollbar-width:thin]"
+            className="lg:col-span-6 lg:sticky lg:top-8 lg:max-h-(--pane-h) lg:overflow-y-auto lg:overscroll-contain lg:scroll-pt-6 lg:pr-2 lg:[scrollbar-width:thin]"
           >
             <article className="space-y-5">
               {c.sections.map((section, idx) => {
